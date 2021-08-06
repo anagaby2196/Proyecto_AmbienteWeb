@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalabel=no, initial-scale=1, maximun-scale=1.0, maximun-scale=1.0">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="stylesheet" href="">
+    <script src="js/validaciones.js"></script>
+
+</head>
+
+<body>
+    <div class="padre">
+        <header class="header">
+
+            <div class="banner"></div>
+            <div class="menu margen-interno">
+                <div class="logo">
+                    <a href="index.html">Logo</a>
+                </div>
+                <nav class="nav">
+                    <a href="#"><i class="fas fa-home" aria-hidden="true"></i><span class="off">registro</span></a>
+                    <a href="#nosotros"><i class="fas fa-user"></i><span class="off">Nosotros</span></a>
+                    <a href="#"><i class="fas fa-comments"></i><span class="off">Servicios</span></a>
+                    <a href="#noticias"><i class="fas fa-file-alt"></i><span class="off">Noticias</span></a>
+                    <a href="#"><i class="fas fa-envelope"></i><span class="off">Contacto</span></a>
+                    
+                </nav>
+
+                <div class="social">
+                    <div>
+                        <a href="#"><i class="fab fa-facebook-square"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="registro margen-interno">
+                <form action="post" action="ingresoCita.php" name="formularioRegistro">
+                    <div class="registro">                        
+                            <div class="form-group col-5">
+                                <div class=""> 
+                                    <label for="usr">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                </div>
+                            </div>
+                                
+                            <div class="form-group col-5">
+                                <label for="pA">Primer Apellido:</label>
+                                <input type="text" class="form-control" id="pA" name="pApellido" required>
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="sA">Segundo Apellido:</label>
+                                <input type="text" class="form-control" id="sA" name="sApellido" required>
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="cedula">Cedula:</label>
+                                <input type="text" class="form-control" id="cedula" name="cedula" required>
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="celular">Numero de telefono:</label>
+                                <input type="text" class="form-control" id="celular" name="celular" required>
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="correo">Correo:</label>
+                                <input type="text" class="form-control" id="correo" name="correo" required> 
+                            </div>
+                            <div class="form-group col-5">
+                                <label for="fechaNacimiento">Fecha Nacimiento:</label>
+                                <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento" required>
+                            </div>
+
+                            <div class="form-group col-5 ">
+                                <label for="doctor" placeholder="Seleccione un doctor">Seleccione un doctor</label>
+                                <select class="form-control" id="doctor" name="doctor" required>
+                                    <option value="0"></option>
+                                    <option value="1">Dr Mora</option>
+                                </select>
+                            </div>
+                            <!-- <div class="form-group col-5">
+                                <label for="tipoCita">Tipo de cita:</label>
+                                <select class="form-control" id="tipoCita" name="tipoCita" required>
+                                    <option value="0" name="vacio">Seleccione una opcion</option>
+                                    <option value="1" name="presencial">Presencial en clinica</option>
+                                    <option value="2" name="domicilio">Atencion a domicilio</option>
+                                </select>
+                            </div> -->
+
+                            <div class="form-group col-5">
+                                <label for="fechaCita">Fecha y hora de la cita</label>
+                                <input type="datetime-local" class="form-control" id="fechaCita" name="fechaCita" required>
+                                
+                            </div>
+                            
+                            <div class="form-group col-5">
+                                <label for="padecimiento">Padecimiento</label>
+                                <textarea class="form-control" id="padecimiento" name="padecimiento"
+                                    placeholder="Favor comentanos cuales son tus padecmientos"
+                                    style="height:200px"></textarea><br><br>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                            
+                        
+                    </div>
+                </form>
+            </div>
+
+        </header>
+        <section id="noticias" class="noticias margen-interno">
+            <div class="articulos">
+                <article class="article">
+                    <img src="/imagenes/Cuidado-de-los-pies-1-650x450.jpg" alt="">
+                    <h3>Fecha</h3>
+                    <h2>Titulo</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus, maxime non quibusdam nesciunt
+                        vel veritatis ea odit accusamus tenetur itaque architecto doloribus in quisquam veniam! Facilis
+                        fuga officia sapiente praesentium.</p>
+                </article>
+                <article class="article">
+                    <img src="/imagenes/Cuidado-de-los-pies-1-650x450.jpg" alt="">
+                    <h3>Fecha</h3>
+                    <h2>Titulo</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos saepe nam praesentium aliquid error
+                        ad maxime facere delectus similique, reprehenderit voluptates? Eius nostrum alias tempora dolor
+                        quisquam soluta laudantium officiis.</p>
+                </article>
+                <article class="article">
+                    <img src="/imagenes/Cuidado-de-los-pies-1-650x450.jpg" alt="">
+                    <h3>Fecha</h3>
+                    <h2>Titulo</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos saepe nam praesentium aliquid error
+                        ad maxime facere delectus similique, reprehenderit voluptates? Eius nostrum alias tempora dolor
+                        quisquam soluta laudantium officiis.</p>
+                </article>
+                <article class="article">
+                    <img src="/imagenes/Cuidado-de-los-pies-1-650x450.jpg" alt="">
+                    <h3>Fecha</h3>
+                    <h2>Titulo</h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                        Eos saepe nam praesentium aliquid error ad maxime facere
+                        delectus similique, reprehenderit voluptates? Eius nostrum
+                        alias tempora dolor quisquam soluta laudantium officiis.</p>
+                </article>
+                <nav class="navegacion">
+                    <a href="#">Incio</a>
+                    <a href="#">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">Final</a>
+                </nav>
+            </div>
+            <aside class="aside">
+                <div class="publicidad">
+                    <h4>Publicidad</h4>
+                    <img src="/imagenes/Cuidado-de-los-pies-1-650x450.jpg" alt="">
+                </div>
+                <div class="publicidad">
+                    <h4>Publicidad</h4>
+                    <img src="/imagenes/Cuidado-de-los-pies-1-650x450.jpg" alt="">
+                </div>
+                <div class="publicidad"></div>
+            </aside>
+        </section>
+        <section id="nosotros" class="section margen-interno">
+            <h1> NUESTRA HISTORIA</h1>
+            </h3>
+            <div>
+                <p> La Clínica Médica del Pie que surge en el 2008 por la doctora Gabriela Salas. Esta clínica se
+                    encuentra ubicada
+                    en Heredia Centro y cuenta con fácil acceso de los distintos pacientes a lo largo de las distintas
+                    provincias de
+                    Costa Rica, ya que se encuentra en un punto bastante estratégico y céntrico. Cuenta con servicios
+                    profesionales y
+                    una atención al cliente muy agradable. Además, cuenta con una infraestructura adaptada a todas las
+                    necesidades de
+                    los pacientes que la visitan.</p>
+                <p> La clínica ofrece distintos servicios relacionados con el tratamiento y cuido de los pies,
+                    específicamente
+                    aquellos tratamientos como: </p>
+                <ul>
+                    <li>Tratamiento contra hongos.</li>
+                    <li>Callosidades.</li>
+                    <li>Uñas encarnadas.</li>
+                    <li>Cuido del pie diabético y no diabético.</li>
+                    <li>Úlceras.</li>
+                    <li>Medicina General.</li>
+                </ul>
+                <p> Gracias a la iniciativa de la doctora Gabriela, los niños, adultos y adultos mayores poseen una
+                    opción más para
+                    poder cuidar su salud, ya que hay muchas enfermedades y padecimientos que pueden ser prevenidos si
+                    se tiene el
+                    cuidado adecuado y la correcta higiene en los pies.</p>
+        </section>
+        <footer class="footer margen-interno">
+            <nav class="pie">
+                <a href="#">Desarrollo por Jhonsel Diaz Chacon y Ana Mora Salas </a>
+            </nav>
+        </footer>
+    </div>
+
+
+</body>
+
+</html>
