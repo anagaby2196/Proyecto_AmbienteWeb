@@ -1,32 +1,12 @@
   <?php
   function recoge($var, $m = "")
   {
-    //isset devolverá FALSE cuando verifique una variable que se haya asignado a NULL
-    if (!isset($_REQUEST[$var])) {
-      //is_array Encuentra si una variable esta en una matriz.
+    if (!isset($_REQUEST[$var])) {      
       $tmp = (is_array($m)) ? [] : "";
-    } elseif (!is_array($_REQUEST[$var])) {
-      //trim recorta caracteres desde el principio y el final de una cadena
-      //htmlspecialchars Convierta caracteres especiales en entidades HTML
-      // ENT_COMPAT: predeterminado. Codifica solo comillas dobles
-      // ENT_QUOTES - Codifica comillas dobles y simples
-      // ENT_NOQUOTES: no codifica ninguna cita
+    } elseif (!is_array($_REQUEST[$var])) {      
       $tmp = trim(htmlspecialchars($_REQUEST[$var], ENT_QUOTES, "UTF-8"));
     } else {
-      $tmp = $_REQUEST[$var];
-      // La función array_walk_recursive () ejecuta cada elemento de la matriz en una función 
-      //definida por el usuario. Las claves y los valores de la matriz son parámetros en la función. 
-      //La diferencia entre esta función y la función array_walk () es que con esta función puede trabajar 
-      //con matrices más profundas (una matriz dentro de una matriz).
-      /* <?php
-      function myfunction($value,$key)
-      {
-      echo "The key $key has the value $value<br>";
-      }
-      $a1=array("a"=>"red","b"=>"green");
-      $a2=array($a1,"1"=>"blue","2"=>"yellow");
-      array_walk_recursive($a2,"myfunction");
-      ?> */
+      $tmp = $_REQUEST[$var];    
         array_walk_recursive($tmp, function (&$valor) {
         $valor = trim(htmlspecialchars($valor, ENT_QUOTES, "UTF-8"));
       });
@@ -42,7 +22,7 @@
   $correo = recoge("correo");
   $fechaNacimiento = recoge("fechaNacimiento");
   $doctor = recoge("doctor");
-  $tipoCita = recoge("tipoCita");
+  /*$tipoCita = recoge("tipoCita");*/
   $fechaCita  = recoge("fechaCita");
   $padecimiento = recoge("padecimiento"); 
 
@@ -73,29 +53,6 @@
     print "\n";
   } else {
     $idDoctorOk = true;
-  }
-
-  if ($idDia == "") {
-    print "  <p class=\"aviso\">No ha seleccionado el día.</p>\n";
-    print "\n";
-  } elseif (!is_numeric($idDia)) {
-    print "  <p class=\"aviso\">El dato del día no es válido.</p>\n";
-    print "\n";
-  }elseif ($idDia < 1 || $idDia > 5) {
-    print "  <p class=\"aviso\">El día es incorrecto.</p>\n";
-    print "\n";
-  } else {
-    $idDiaOk = true;
-  }
-
-  if ($hora == "") {
-    print "  <p class=\"aviso\">No ha indicado la hora.</p>\n";
-    print "\n";
-  } elseif ($hora != "10" && $hora != "12" && $hora != "16" && $hora != "18") {
-    print "  <p class=\"aviso\">Por favor, indique la hora de la cita.</p>\n";
-    print "\n";
-  } else {
-    $horaOk = true;
   }
 
   if ($padecimiento == "") {
@@ -175,34 +132,95 @@
      /*  include_once 'conection.php';
     require_once 'conection.php'; */
     //Una vez validados los datos vamos a proceder a insertarlos en base de datos
-    echo InsertaDatos($nombrePaciente, $idDoctor, $idDia, $hora, $padecimiento);
+    echo InsertaPaciente($pPaciente, $pPrApellido, $pDoApellido, $pCedula, $pCelular, $pCorreo, $pFNacimiento, $pPadecimiento);
+    echo InsertaCitaPaciente();
 
   }
 
+  $nombrePaciente = recoge("nombre");
+  $pApellidoo = recoge("pApellido");
+  $sApellido = recoge("sApellido");
+  $cedula = recoge("cedula");
+  $celular = recoge("celular");
+  $correo = recoge("correo");
+  $fechaNacimiento = recoge("fechaNacimiento");
+  $doctor = recoge("doctor");
+  $fechaCita  = recoge("fechaCita");
+  $padecimiento = recoge("padecimiento"); 
 
-  function InsertaDatos($pnombrePaciente, $pidDoctor, $pidDia, $phora, $ppadecimiento)
+  function InsertaPaciente($pPaciente, $pPrApellido, $pDoApellido, $pCedula, $pCelular, $pCorreo, $pFNacimiento, $pPadecimiento)
     {
       $response = "";
       $conn = Conecta();
       // prepare and bind
-      $stmt = $conn->prepare("INSERT INTO citaMedica (paciente, idDoctor, idDia, hora, padecimiento) VALUES (?, ?, ?, ?, ?)");
-      $stmt->bind_param("siiis", $inombre, $iDoctor, $idia, $ihora, $ipadecimiento);
+      $stmt = $conn->prepare("INSERT INTO paciente (Paciente, PrimerApellido, segundoApellido, Cedula, Celular, Correo, FechaNacimiento, Padecimiento) VALUES (?,?,?,?,?,?,?,?)");
+      $stmt->bind_param("siiiiiis", $nombrePaciente, $pApellidoo, $sApellido, $cedula, $celular,$correo, $fechaNacimiento,$padecimiento);
 
       // set parameters and execute
-      $inombre = $pnombrePaciente;
-      $iDoctor = $pidDoctor;
-      $idia = $pidDia;
-      $ihora = $phora;
-      $ipadecimiento = $ppadecimiento;
+      
+      $nombrePaciente= $pPaciente;
+      $pApellidoo= $pPrApellido;
+      $sApellido= $pDoApellido;
+      $nombrePacicedulaente= $pCedula ;
+      $celular= $pCelular ;
+      $correo= $pCorreo;
+      $fechaNacimiento= $pFNacimiento;
+      $padecimiento= $pPadecimiento;
 
       $stmt->execute();
 
-      $response = "Se almaceno la cita satisfactoriamente";
+      $response = "Se almaceno el paciente satisfactoriamente";
 
       $stmt->close();
       $conn->close();
 
       return $response;
     }
+    function InsertaCitaPaciente($pIdCliente, $pIdDoctor, $pFecha)
+    {
+      $response = "";
+      $conn = Conecta();
+      // prepare and bind
+      $stmt = $conn->prepare("INSERT INTO citapaciente (pPaciente, pPrApellido, pDoApellido, pCedula, pCelular, pCorreo, pFNacimiento, pPadecimiento) VALUES (?,?,?,?,?,?,?,?)");
+      $stmt->bind_param("siis", $nombrePaciente, $pApellidoo, $sApellido, $cedula, $celular,$correo, $fechaNacimiento,$padecimiento);
+
+      // set parameters and execute
+      
+      $nombrePaciente= $pPaciente;
+      $pApellidoo= $pPrApellido;
+      $sApellido= $pDoApellido;
+      $nombrePacicedulaente= $pCedula ;
+      $celular= $pCelular ;
+      $correo= $pCorreo;
+      $fechaNacimiento= $pFNacimiento;
+      $padecimiento= $pPadecimiento;
+
+      $stmt->execute();
+
+      $response = "Se almaceno el paciente satisfactoriamente";
+
+      $stmt->close();
+      $conn->close();
+
+      return $response;
+    }
+
+    function getlastPaciente(){
+      $response = "";
+      $conn = Conecta();
+      // prepare and bind
+      $stmt = $conn->prepare("SELECT MAX(idPACIENTE) from paciente;");
+     
+      $stmt->execute();
+
+      $response = $stmt;
+
+      $stmt->close();
+      $conn->close();
+
+      return $response;
+
+    }
+
 
   ?>
