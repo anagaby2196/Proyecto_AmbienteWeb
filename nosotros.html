@@ -1,72 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, user-scalabel=no, initial-scale=1, maximun-scale=1.0, maximun-scale=1.0">
-    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="">
     <script src="js/validaciones.js"></script>
+
+    <div class="padre">
+        <img class="banner" src="imagenes/Banner.jpg" alt="" style="height: 255.8px;">
+    </div>
 
 </head>
 
 <body>
     <div class="padre">
         <header class="header">
-
-            <div class="banner"></div>
             <div class="menu margen-interno">
                 <nav class="nav">
-                    <a href="index.html"><i class="fas fa-home" aria-hidden="true" style="padding: 0 2px;"></i><span class="off">Registro</span></a>
-                    <a href="nosotros.html"><i class="fas fa-user" style="padding: 0 2px;"></i><span class="off">Nosotros</span></a>
-                    <a href="servicios.html"><i class="fas fa-ambulance" style="padding: 0 2px;"></i><span class="off">Servicios</span></a>
-                     <a href="promociones.html"><i class="fas fa-tags" style="padding: 0 2px;"></i><span class="off">Promociones de Temporada</span></a> <!--Agregar imagenes de promos -->
-                    <a href="#"><i class="fas fa-envelope" style="padding: 0 2px;"></i><span class="off">Contacto</span></a>
+                    <a href="index.html"><i class="fas fa-home" aria-hidden="true" style="padding: 0 2px;"></i><span
+                            class="off">Registro</span></a>
+                    <a href="nosotros.html"><i class="fas fa-user" style="padding: 0 2px;"></i><span
+                            class="off">Nosotros</span></a>
+                    <a href="servicios.html"><i class="fas fa-ambulance" style="padding: 0 2px;"></i><span
+                            class="off">Servicios</span></a>
+                    <a href="promociones.html"><i class="fas fa-tags" style="padding: 0 2px;"></i><span
+                            class="off">Promociones de Temporada</span></a>
+                    <a href="contacto.html"><i class="fas fa-envelope" style="padding: 0 2px;"></i><span
+                            class="off">Contacto</span></a>
+                    <!--Falta hacer pagina de contacto-->
+
                 </nav>
+
                 <div class="social">
                     <div>
-                        <a href="nosotros.html"><i class="fab fa-facebook-square"></i></a>
-                        <a href="nosotros.html"><i class="fab fa-instagram"></i></a>
+                        <a href="index.html"><i class="fab fa-facebook-square"></i></a>
+                        <a href="index.html"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
-           
-        </header>
-       
-        <br>
-        <section id="nosotros" class="section margen-interno">
-            <h1><u> NUESTRA HISTORIA</u></h1>
-            </h3>
-            <div>
-                <p> La Clínica Médica del Pie que surge en el 2008 por la doctora Gabriela Salas. Esta clínica se
+            <div class="registro margen-interno">
+                <br>
+                <h1><u><b>NUESTRA HISTORIA</b></u></h1>
+                <form action="post" action="ingresoCita.php" name="formularioRegistro">
+                    La Clínica Médica del Pie que surge en el 2008 por la doctora Gabriela Salas. Esta clínica se
                     encuentra ubicada en Heredia Centro y cuenta con fácil acceso de los distintos pacientes a lo
-                    largo de las distintas provincias de Costa Rica, ya que se encuentra en un punto bastante estratégico
+                    largo de las distintas provincias de Costa Rica, ya que se encuentra en un punto bastante
+                    estratégico
                     y céntrico. Cuenta con servicios profesionales y una atención al cliente muy agradable. Además,
-                    cuenta con una infraestructura adaptada a todas las necesidades de los pacientes que la visitan.</p>
-                <p> La clínica ofrece distintos servicios relacionados con el tratamiento y cuido de los pies,
-                    específicamente aquellos tratamientos como: </p>
-                <ul style="margin-left: 5%;">
-                    <li>Tratamiento contra hongos.</li>
-                    <li>Callosidades.</li>
-                    <li>Uñas encarnadas.</li>
-                    <li>Cuido del pie diabético y no diabético.</li>
-                    <li>Úlceras.</li>
-                    <li>Medicina General.</li>
-                </ul>
-                <p> Gracias a la iniciativa de la doctora Gabriela, los niños, adultos y adultos mayores poseen una
+                    cuenta con una infraestructura adaptada a todas las necesidades de los pacientes que la visitan.
+                    <br>
+                    <br>
+
+                    La clínica ofrece distintos servicios relacionados con el tratamiento y cuido de los pies,
+                    específicamente aquellos tratamientos como:
+                    <br>
+                    <br>
+
+                    <ul style="margin-left: 5%;">
+                        <li>Tratamiento contra hongos.</li>
+                        <li>Callosidades.</li>
+                        <li>Curación de uñas encarnadas.</li>
+                        <li>Cuido del pie diabético y no diabético.</li>
+                        <li>Curación de úlceras.</li>
+                        <li>Medicina General.</li>
+                        <li>Cirugías Podológicas.</li>
+                        <li>Pedicura Médica.</li>
+                    </ul>
+                    <br>
+
+                    Actualmenta, la Clínica optó por incorporar un nuevo departamento de servicios relacionados con la
+                    parte estética.
+                    Esto con el fin de lograr brindar servicos más amplios y completos en temas de la salud. Este nuevo
+                    departamento
+                    cuenta con el nombre de Fisio-Estética MOSSA, en donde se brindan servicios tales como:
+                    <br>
+                    <br>
+
+                    <ul style="margin-left: 5%;">
+                        <li>Gimnasia Pasiva.</li>
+                        <li>Lifting de Pestañas.</li>
+                        <li>Micropigmentación.</li>
+                        <li>Microblanding.</li>
+                        <li>Masajes Descontracturantes.</li>
+                        <li>Desintoxicación Iónica.</li>
+                        <li>Mesoterapia.</li>
+                    </ul>
+                    <br>
+                    Gracias a la iniciativa de la doctora Gabriela, los niños, adultos y adultos mayores poseen una
                     opción más para poder cuidar su salud, ya que hay muchas enfermedades y padecimientos que pueden
-                    ser prevenidos si se tiene el cuidado adecuado y la correcta higiene en los pies.</p>
-        </section>
-       
+                    ser prevenidos si se tiene el cuidado adecuado y la correcta higiene en los pies.
+
+                </form>
+            </div>
+
+        </header>
         <footer class="footer margen-interno">
             <nav class="pie">
-                <a href="#"> Desarrollado por Jhonsel Díaz Chacón y Ana Gabriela Mora Salas </a>
+                <a href="#">Desarrollado por Jhonsel Díaz Chacón y Ana Gabriela Mora Salas </a>
             </nav>
         </footer>
     </div>

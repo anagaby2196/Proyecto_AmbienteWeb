@@ -19,11 +19,9 @@ a{
         
     }
         .banner{            
-            background: url(/imagenes/Banner.jpg);
             background-position: center;
             background-attachment: contain;
-            background-size: cover;
-            height: 250PX;
+            background-size: cover;  
         }
         .menu{
             background:#015e94d3;
@@ -204,4 +202,17 @@ a{
     .aside{
         flex-direction: column;
     }
+}
+
+.despedida{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+    font-size: x-large;
+    font-weight: bolder;
+    color: cadetblue;
+}
+.fondo{
+   background-repeat:no-repeat;
+
+
 }
