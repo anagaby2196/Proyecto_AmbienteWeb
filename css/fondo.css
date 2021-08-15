@@ -1,8 +1,9 @@
 body {
     height: 1400px;
-    background-image: url("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/pedicura-medica-running-portada2-1556794999.jpg");
+    background-image: url("/imagenes/pedicura-medica-running-portada2-1556794999.jpg");
     background-repeat:no-repeat;
     background-position-x:center;
     background-position-y:center;
     background-size: unset;  
+    flex: 30%;
   }

@@ -1,12 +1,23 @@
   <?php
   function recoge($var, $m = "")
   {
-    if (!isset($_REQUEST[$var])) {      
+    //isset: devuelve FALSE en caso de una variable que se haya asignado null
+    if (!isset($_REQUEST[$var])) {  
+      //is_array: encuentra si la variable está en la matriz    
       $tmp = (is_array($m)) ? [] : "";
-    } elseif (!is_array($_REQUEST[$var])) {      
+    } elseif (!is_array($_REQUEST[$var])) {   
+      //trim: recorta caracteres desde el principio y el final de una cadena
+      //htmlspecialchars: Convierta caracteres especiales en entidades HTML
+      // ENT_COMPAT: predeterminado. Codifica solo comillas dobles
+      // ENT_QUOTES: Codifica comillas dobles y simples
+      // ENT_NOQUOTES: no codifica ninguna cita   
       $tmp = trim(htmlspecialchars($_REQUEST[$var], ENT_QUOTES, "UTF-8"));
     } else {
-      $tmp = $_REQUEST[$var];    
+      $tmp = $_REQUEST[$var];  
+       // La función array_walk_recursive () ejecuta cada elemento de la matriz en una función 
+      //definida por el usuario. Las claves y los valores de la matriz son parámetros en la función. 
+      //La diferencia entre esta función y la función array_walk () es que con esta función puede trabajar 
+      //con matrices más profundas (una matriz dentro de una matriz).  
         array_walk_recursive($tmp, function (&$valor) {
         $valor = trim(htmlspecialchars($valor, ENT_QUOTES, "UTF-8"));
       });
@@ -15,16 +26,17 @@
   }
 
   $nombrePaciente = recoge("nombre");
-  $pApellidoo = recoge("pApellido");
-  $sApellido = recoge("sApellido");
+  $primerApellido = recoge("primerApellido");
+  $segundoApellido = recoge("segundoApellido");
   $cedula = recoge("cedula");
   $celular = recoge("celular");
   $correo = recoge("correo");
   $fechaNacimiento = recoge("fechaNacimiento");
-  $doctor = recoge("doctor");
-  /*$tipoCita = recoge("tipoCita");*/
-  $fechaCita  = recoge("fechaCita");
-  $padecimiento = recoge("padecimiento"); 
+  $idDoctor = recoge("idDoctor");
+  $fechaCita = recoge("fechaCita");
+  $padecimiento = recoge("padecimiento");
+
+
 
   $nombrePaciente = false;
   $pApellidoo = false;
