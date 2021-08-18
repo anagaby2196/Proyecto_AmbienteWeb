@@ -141,98 +141,10 @@
     print "  <p>El padecimiento a tratar es <strong>$padecimiento</strong>.</p>\n";
 
     include 'conection.php';
-     /*  include_once 'conection.php';
-    require_once 'conection.php'; */
     //Una vez validados los datos vamos a proceder a insertarlos en base de datos
-    echo InsertaPaciente($pPaciente, $pPrApellido, $pDoApellido, $pCedula, $pCelular, $pCorreo, $pFNacimiento, $pPadecimiento);
-    echo InsertaCitaPaciente();
+    echo json_encode(InsertaPaciente($pPaciente, $pPrApellido, $pDoApellido, $pCedula, $pCelular, $pCorreo, $pFNacimiento, $pPadecimiento));
+    
 
   }
-
-  $nombrePaciente = recoge("nombre");
-  $pApellidoo = recoge("pApellido");
-  $sApellido = recoge("sApellido");
-  $cedula = recoge("cedula");
-  $celular = recoge("celular");
-  $correo = recoge("correo");
-  $fechaNacimiento = recoge("fechaNacimiento");
-  $doctor = recoge("doctor");
-  $fechaCita  = recoge("fechaCita");
-  $padecimiento = recoge("padecimiento"); 
-
-  function InsertaPaciente($pPaciente, $pPrApellido, $pDoApellido, $pCedula, $pCelular, $pCorreo, $pFNacimiento, $pPadecimiento)
-    {
-      $response = "";
-      $conn = Conecta();
-      // prepare and bind
-      $stmt = $conn->prepare("INSERT INTO paciente (Paciente, PrimerApellido, segundoApellido, Cedula, Celular, Correo, FechaNacimiento, Padecimiento) VALUES (?,?,?,?,?,?,?,?)");
-      $stmt->bind_param("siiiiiis", $nombrePaciente, $pApellidoo, $sApellido, $cedula, $celular,$correo, $fechaNacimiento,$padecimiento);
-
-      // set parameters and execute
-      
-      $nombrePaciente= $pPaciente;
-      $pApellidoo= $pPrApellido;
-      $sApellido= $pDoApellido;
-      $nombrePacicedulaente= $pCedula ;
-      $celular= $pCelular ;
-      $correo= $pCorreo;
-      $fechaNacimiento= $pFNacimiento;
-      $padecimiento= $pPadecimiento;
-
-      $stmt->execute();
-
-      $response = "Se almaceno el paciente satisfactoriamente";
-
-      $stmt->close();
-      $conn->close();
-
-      return $response;
-    }
-    function InsertaCitaPaciente($pIdCliente, $pIdDoctor, $pFecha)
-    {
-      $response = "";
-      $conn = Conecta();
-      // prepare and bind
-      $stmt = $conn->prepare("INSERT INTO citapaciente (pPaciente, pPrApellido, pDoApellido, pCedula, pCelular, pCorreo, pFNacimiento, pPadecimiento) VALUES (?,?,?,?,?,?,?,?)");
-      $stmt->bind_param("siis", $nombrePaciente, $pApellidoo, $sApellido, $cedula, $celular,$correo, $fechaNacimiento,$padecimiento);
-
-      // set parameters and execute
-      
-      $nombrePaciente= $pPaciente;
-      $pApellidoo= $pPrApellido;
-      $sApellido= $pDoApellido;
-      $nombrePacicedulaente= $pCedula ;
-      $celular= $pCelular ;
-      $correo= $pCorreo;
-      $fechaNacimiento= $pFNacimiento;
-      $padecimiento= $pPadecimiento;
-
-      $stmt->execute();
-
-      $response = "Se almaceno el paciente satisfactoriamente";
-
-      $stmt->close();
-      $conn->close();
-
-      return $response;
-    }
-
-    function getlastPaciente(){
-      $response = "";
-      $conn = Conecta();
-      // prepare and bind
-      $stmt = $conn->prepare("SELECT MAX(idPACIENTE) from paciente;");
-     
-      $stmt->execute();
-
-      $response = $stmt;
-
-      $stmt->close();
-      $conn->close();
-
-      return $response;
-
-    }
-
 
   ?>
