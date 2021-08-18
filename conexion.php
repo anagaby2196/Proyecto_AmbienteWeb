@@ -76,4 +76,33 @@ function getObjeto($sql){
 
   return $rawdata; //devolvemos el array
 }
+function InsertaDatos($pnombrePaciente,$pprimerApellido,$psegundoApellido,$pcedula,$pcelular,$pcorreo,$pfechaNacimiento,$pidDoctor,$pfechaCita,$ppadecimiento)
+{
+  $response = "";
+  $conn = Conecta();
+  // prepare and bind
+  mysqli_set_charset($conn, "utf8"); //formato de datos utf8
+
+  $stmt = $conn->prepare("Call spInsertaTutoria(?, ?, ?, ?, ?)");
+  $stmt->bind_param("siiis", $inombre, $iprofesor, $idia, $ihora, $iasunto);
+
+  // set parameters and execute
+  $inombre = $pnombreAlumno;
+  $iprofesor = $pidProfesor;
+  $idia = $pidDia;
+  $ihora = $phora;
+  $iasunto = $pasunto;
+
+  $stmt->execute();
+
+  $response = "Se almaceno la tutoría satisfactoriamente";
+
+  $stmt->close();
+  disconnectDB($conn);
+
+  return $response;
+}
+
+
+
 ?>

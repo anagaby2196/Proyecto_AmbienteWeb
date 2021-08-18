@@ -38,17 +38,17 @@
 
 
 
-  $nombrePaciente = false;
-  $pApellidoo = false;
-  $sApellido = false;
-  $cedula = false;
-  $celular = false;
-  $correo = false;
-  $fechaNacimiento = false;
-  $doctor = false;
-  $tipoCita = false;
-  $fechaCita = false;
-  $padecimiento =false;
+  $nombrePacienteOk = false;
+  $pApellidooOk = false;
+  $sApellidoOk = false;
+  $cedulaOk = false;
+  $celularOk = false;
+  $correoOk = false;
+  $fechaNacimientoOk = false;
+  $doctorOk = false;
+  $tipoCitaOk = false;
+  $fechaCitaOk = false;
+  $padecimientoOk =false;
 
   if ($nombrePaciente == "") {
     print "  <p class=\"aviso\">No ha escrito el nombre del paciente.</p>\n";
@@ -56,7 +56,57 @@
   } else {
     $nombrePacienteOk = true;
   }
-
+  if ($primerApellido == "") {
+    print "  <p class=\"aviso\">No ha escrito el primer apellido del paciente.</p>\n";
+    print "\n";
+  } else {
+    $pApellidooOk = true;
+  }
+  if ($segundoApellido == "") {
+    print "  <p class=\"aviso\">No ha escrito el segundo apellido del paciente.</p>\n";
+    print "\n";
+  } else {
+    $sApellidoOk = true;
+  }
+  if ($cedula == "") {
+    print "  <p class=\"aviso\">No ha escrito la cudela del paciente.</p>\n";
+    print "\n";
+  } else {
+    $cedulaOk = true;
+  }
+  if ($celular == "") {
+    print "  <p class=\"aviso\">No ha escrito el contacto del paciente.</p>\n";
+    print "\n";
+  } else {
+    $cedulaOk = true;
+  }
+  if ($correo == "") {
+    print "  <p class=\"aviso\">No ha escrito el correo del paciente.</p>\n";
+    print "\n";
+  } else {
+    $correoOk = true;
+  }
+  if ($fechaNacimiento == "") {
+    print "  <p class=\"aviso\">No ha escrito la fecha de nacimiento del paciente.</p>\n";
+    print "\n";
+  } else {
+    $fechaNacimientoOk = true;
+  }
+  if ($idDoctor == "") {
+    print "  <p class=\"aviso\">No ha seleccionado al doctor.</p>\n";
+    print "\n";
+  } elseif (!is_numeric($idDoctor)) {
+    print "  <p class=\"aviso\">El dato del doctor no es válido.</p>\n";
+    print "\n";
+  } else {
+    $idDoctorOk = true;
+  }
+  if ($fechaCita == "") {
+    print "  <p class=\"aviso\">No ha escrito la fecha de la cita del paciente.</p>\n";
+    print "\n";
+  } else {
+    $fechaCitaOk = true;
+  }
   if ($idDoctor == "") {
     print "  <p class=\"aviso\">No ha seleccionado al Doctor.</p>\n";
     print "\n";
@@ -66,85 +116,15 @@
   } else {
     $idDoctorOk = true;
   }
-
   if ($padecimiento == "") {
     print "  <p class=\"aviso\">No ha escrito el padecimiento.</p>\n";
     print "\n";
   } else {
     $padecimientoOk = true;
   }
-
-  if ($nombrePacienteOk && $idDoctorOk && $idDiaOk && $horaOk && $padecimientoOk) {
-    print "  <p>El paciente ingresado es <strong>$nombrePaciente</strong>.</p>\n";
-    print "\n";
-    $Doctor = "";
-    switch ($idDoctor) {
-      case '1':
-          $Doctor = "Eduardo González Paniagua";    
-        break;
-        case '2':
-           $Doctor = "Armenia Monge Soto";    
-        break;
-        case '3':
-          $Doctor = "Cleimer Solis Vargas";    
-        break;
-        case '4':
-           $Doctor = "Andrea Rodriguez Vargas";    
-        break;
-        case '5':
-          $Doctor = "José Angel Cedeño Nuñez";    
-       break;
-      default:
-          $Doctor = "No es válido"; 
-        break;
-    }
-      print "  <p>El Doctor seleccionado es <strong>$Doctor</strong>.</p>\n";
-      print "\n";
-
-    $dia = "";
-      switch ($idDia) {
-        case '1':
-            $dia = "lunes";    
-          break;
-          case '2':
-             $dia = "martes";    
-          break;
-          case '3':
-            $dia = "miercoles";    
-          break;
-          case '4':
-             $dia = "jueves";    
-          break;
-          case '5':
-            $dia = "viernes";    
-         break;
-        default:
-            $dia = "No es válido"; 
-          break;
-      }
-        print "  <p>El dia seleccionado es <strong>$dia</strong>.</p>\n";
-        print "\n";
-   
-    if ($hora == 10) {
-      print "  <p>La hora seleccionada fue <strong>10</strong>.</p>\n";
-    } elseif ($hora == 12) {
-      print "  <p>La hora seleccionada fue <strong>12</strong>.</p>\n";
-    } elseif ($hora == 16) {
-      print "  <p>La hora seleccionada fue <strong>16</strong>.</p>\n";
-    } elseif ($hora == 18) {
-      print "  <p>La hora seleccionada fue <strong>18</strong>.</p>\n";
-    }else {
-      print "  <p> <strong>NO selecciono la hora</strong>.</p>\n";
-    }
-    print "\n";
-
-    print "  <p>El padecimiento a tratar es <strong>$padecimiento</strong>.</p>\n";
-
-    include 'conection.php';
-    //Una vez validados los datos vamos a proceder a insertarlos en base de datos
-    echo json_encode(InsertaPaciente($pPaciente, $pPrApellido, $pDoApellido, $pCedula, $pCelular, $pCorreo, $pFNacimiento, $pPadecimiento));
-    
-
+  if ($nombrePaciente&& $primerApellido&& $segundoApellido&& $cedula&& $celular&& $correo&& $fechaNacimiento&& $idDoctor&& $fechaCita && $padecimiento){
+      include 'conexion.php';
+      //Una vez validados los datos vamos a proceder a insertarlos en base de datos
+      echo json_encode(InsertaPaciente($pnombrePaciente,$pprimerApellido,$psegundoApellido,$pcedula,$pcelular,$pcorreo,$pfechaNacimiento,$pidDoctor,$pfechaCita,$ppadecimiento)); 
   }
-
   ?>
