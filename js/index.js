@@ -3,16 +3,19 @@ $(document).ready(function(){
     cargaDoctores();
 
    $("#btEnviar").click(function(){
-       ingresaPaciente($("#nombre").val(),$("#pApellido").val(),
-       $("#sApellido").val(),$("#cedula").val(),$("#celular").val(),
-       $("#correo").val(),$("#fechaNacimiento").val(),$("input[name='doctor']:checked").val(),
-       $("#fechaCita").val(),$("#padecimiento").val())
-   })
+
+       ingresaPaciente($("#nombre").val(), $("#pApellido").val(),
+       $("#sApellido").val(), $("#cedula").val(), $("#celular").val(),
+       $("#correo").val(), $("#fechaNacimiento").val(), $("#idDoctor").val(),
+       $("#fechaCita").val(),$("#padecimiento").val());
+   });
 
    $("btRestablecer").click(function(){
+
        LimpiaCampos();
    });
 });
+
 
 function cargaDoctores() {
     try {
@@ -26,6 +29,7 @@ function cargaDoctores() {
         alert(err);
     }
 }
+
 function LlenaDoctoresJson(TextoJSON) {
     var elValor;
     var elHTML;
@@ -33,27 +37,25 @@ function LlenaDoctoresJson(TextoJSON) {
     for (i = 0; i < ObjetoJSON.length; i++) {
         elValor = ObjetoJSON[i].idDoctor;
         elHTML = ObjetoJSON[i].Nombre;
-        elHTML2 = ObjetoJSON[i].primerApellido;
-        elHTML3 = ObjetoJSON[i].segundoApellido;
-        $('#idDoctor').append($('<option></option>').val(elValor).html(elHTML).html(elHTML2).html(elHTML3));
+        $('#idDoctor').append($('<option></option>').val(elValor).html(elHTML));
     }
 }
 
-function ingresaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pcedula,pcelular,pcorreo,pfechaNacimiento,pidDoctor,pfechaCita,ppadecimiento) {
+function ingresaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pcedula, pcelular, pcorreo, pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
     try {
         $.ajax(
             {
                 data: {
-                    nombrePaciente=pnombrePaciente,
-                    primerApellido=pprimerApellido,
-                    segundoApellido=psegundoApellido,
-                    cedula=pcedula,
-                    celular=pcelular,
-                    correo=pcorreo,
-                    fechaNacimiento=pfechaNacimiento,
-                    idDoctor=pidDoctor,
-                    fechaCita=pfechaCita,
-                    padecimiento=ppadecimiento,
+                    nombre: pnombrePaciente,
+                    pApellido: pprimerApellido,
+                    sApellido: psegundoApellido,
+                    cedula: pcedula,
+                    celular: pcelular,
+                    correo: pcorreo,
+                    fechaNacimiento: pfechaNacimiento,
+                    idDoctor: pidDoctor,
+                    fechaCita: pfechaCita,
+                    padecimiento: ppadecimiento,
 
                 },
                 url: 'ingresoCita.php',
@@ -70,12 +72,14 @@ function ingresaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pce
         alert(err);
     }
 }
+
 function InsercionCitaExitosa(TextoJSON) {
 
     $("#pnlInfo").dialog();
     $("#blInfo").html('<p>' + TextoJSON + '</p>');
     LimpiaCampos();
 }
+
 function InsercionCitaFallida(TextoJSON) {
     $("#pnlMensaje").dialog();
     $("#pnlMensaje").html('<p>Ocurrio un error en el servidor ..</p>' + TextoJSON.responseText);
@@ -89,7 +93,7 @@ function LimpiaCampos() {
     $("#celular").val(''),
     $("#correo").val(''),
     $("#fechaNacimiento").val(''),
-    $("input[name='doctor']:checked").val(''),
+    $("#idDoctor").val(''),
     $("#fechaCita").val(''),
     $("#padecimiento").val('')
 }

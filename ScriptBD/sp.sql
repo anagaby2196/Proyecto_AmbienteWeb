@@ -5,5 +5,5 @@ CREATE PROCEDURE `spInsertaCitaPaciente`(IN `pnombrePaciente` VARCHAR(20) CHARSE
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetDoctores`()
     SQL SECURITY INVOKER
-SELECT idDoctor, Nombre, PrimerApellido, SegundoApellido from doctor$$
+SELECT idDoctor, Nombre from doctor$$
 DELIMITER ;

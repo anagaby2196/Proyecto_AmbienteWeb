@@ -1,6 +1,8 @@
 <?php
+
  include 'conexion.php';
- $elSQL = "call spGetDoctores()";
+ $elSQL = "Call spGetDoctores()";
  $myArray = getArray($elSQL);
  echo json_encode($myArray, JSON_UNESCAPED_UNICODE);
+
 ?>
