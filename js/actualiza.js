@@ -2,19 +2,19 @@ $(document).ready(function () {
     
     cargaDoctores();
 
-   $("#btEnviar").click(function(){
-       actualizaCitaPaciente($("#nombre").val(),$("#pApellido").val(),
-       $("#sApellido").val(),$("#cedula").val(),$("#celular").val(),
-       $("#correo").val(),$("#fechaNacimiento").val(),$("input[name='doctor']:checked").val(),
-       $("#fechaCita").val(),$("#padecimiento").val())
-   })
+   $("#btEnviar").click(function() {
+       actualizaCitaPaciente($("#nombre").val(), $("#pApellido").val(),
+       $("#sApellido").val(), $("#cedula").val(), $("#celular").val(),
+       $("#correo").val(), $("#fechaNacimiento").val(), $("#idDoctor").val(),
+       $("#fechaCita").val(),$("#padecimiento").val());
+   });
 
     $("#btRestablecer").click(function () {
         LimpiaCampos();
     });
     
 
-});//(document).ready ==============================
+});
 
 function cargaDoctores() {
     try {
@@ -29,37 +29,50 @@ function cargaDoctores() {
     }
 }
 
-function actualizaTutoria(pidTutoria, pnombreAlumno, pidProfesor, pidDia, pHora, pAsunto) {
+function cargaCita() {
+    try {
+        $.ajax({
+            url: 'getCita.php?idCitaPaciente=' + $("#idCitaPaciente").val()
+        })
+            .done(function (data) {
+                LlenaCitaJson(data);
+            });
+    } catch (err) {
+        alert(err);
+    }
+}
+
+function actualizaCitaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pcedula, pcelular, pcorreo, pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
     try {
         $.ajax(
             {
                 data: {
-                    idTutoria: pidTutoria,
-                    nombreAlumno: pnombreAlumno,
-                    idProfesor: pidProfesor,
-                    idDia: pidDia,
-                    hora: pHora,
-                    asunto: pAsunto,
+                    nombre: pnombrePaciente,
+                    pApellido: pprimerApellido,
+                    sApellido: psegundoApellido,
+                    cedula: pcedula,
+                    celular: pcelular,
+                    correo: pcorreo,
+                    fechaNacimiento: pfechaNacimiento,
+                    idDoctor: pidDoctor,
+                    fechaCita: pfechaCita,
+                    padecimiento: ppadecimiento,
                 },
                 url: 'actualiza.php',
                 type: 'POST',
                 dataType: 'json',
-                // beforeSend: function () 
-                //  {
-                //     $("#pnlInfo").fadeTo("slow");
-                //     $("#pnlMensaje").fadeTo("slow");
-                //  },
+               
                 success: function (r) {
-                    ActualizacionInsercionTutoriaExitosa(r);
+                    ActualizacionInsercionCitaExitosa(r);
                 },
                 error: function (r) {
-                    ActualizacionTutoriaFallida(r);
+                    ActualizacionCitaFallida(r);
                 }
             });
     } catch (err) {
         alert(err);
     }
-}//Fin actualizaTutoria ================================================
+}
 
 function LlenaDoctoresJson(TextoJSON) {
     var elValor;
@@ -68,39 +81,45 @@ function LlenaDoctoresJson(TextoJSON) {
     for (i = 0; i < ObjetoJSON.length; i++) {
         elValor = ObjetoJSON[i].idDoctor;
         elHTML = ObjetoJSON[i].Nombre;
-        // elHTML2 = ObjetoJSON[i].primerApellido;
-        // elHTML3 = ObjetoJSON[i].segundoApellido;
-        $('#idDoctor').append($('<option></option>').val(elValor));
+        $('#idDoctor').append($('<option></option>').val(elValor).html(elHTML));
     }
 }
 
-function ActualizacionInsercionTutoriaExitosa(TextoJSON) {
+function ActualizacionInsercionCitaExitosa(TextoJSON) {
 
     $("#pnlInfo").dialog();
     $("#blInfo").html('<p>' + TextoJSON + '</p>');
     LimpiaCampos();
-    window.location.replace("tutorias.html");
-}//Fin ActualizacionInsercionTutoriaExitosa ================================================
+    window.location.replace("registro.html");
+}
 
 function LimpiaCampos() {
-    $('#nombreAlumno').val('');
-    $('#asunto').val('');
-    $("#idProfesor").val("1");
-    $("#idDia").val("1");
-    $("input[name=hora][value='10']").prop("checked",true);
-    //$('input[name="hora"]').attr('checked', false);
-}//Fin LimpiaCampos ================================================
+    $("#nombre").val(''),
+    $("#pApellido").val(''),
+    $("#sApellido").val(''),
+    $("#cedula").val(''),
+    $("#celular").val(''),
+    $("#correo").val(''),
+    $("#fechaNacimiento").val(''),
+    $("#idDoctor").val(''),
+    $("#fechaCita").val(''),
+    $("#padecimiento").val('')
+}
 
-function ActualizacionTutoriaFallida(TextoJSON) {
+function ActualizacionCitaFallida(TextoJSON) {
     $("#pnlMensaje").dialog();
     $("#pnlMensaje").html('<p>Ocurrio un error en el servidor ..</p>' + TextoJSON.responseText);
-}//Fin InsercionTutoriaFallida ================================================
+}
 
-function LlenaTutoriaJson(TextoJSON) {
+function LlenaCitaJson(TextoJSON) {
     var ObjetoJSON = JSON.parse(TextoJSON);
-    $('#nombreAlumno').val(ObjetoJSON.alumno);
-    $('#asunto').val(ObjetoJSON.asunto);
-    $("#idProfesor").val(ObjetoJSON.idProfesor);
-    $("#idDia").val(ObjetoJSON.idDia);
-    $("input[name=hora][value=" + ObjetoJSON.hora + "]").prop("checked",true);
-}//Fin LlenaProfesorJson =========================================
+    $('#nombre').val(ObjetoJSON.nombre);
+    $('#pApellido').val(ObjetoJSON.primerApellido);
+    $('#sApellido').val(ObjetoJSON.segundoApellido);
+    $('#cedula').val(ObjetoJSON.cedula);
+    $('#correo').val(ObjetoJSON.correo);
+    $('#fechaNacimiento').val(ObjetoJSON.fechaNacimiento);
+    $('#idDoctor').val(ObjetoJSON.idDoctor);
+    $('#fechaCita').val(ObjetoJSON.fechaCita);
+    $('#padecimiento').val(ObjetoJSON.padecimiento);
+}

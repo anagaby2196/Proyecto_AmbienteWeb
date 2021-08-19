@@ -2,7 +2,7 @@ $(document).ready(function(){
    
     cargaDoctores();
 
-   $("#btEnviar").click(function(){
+   $("#btEnviar").click(function() {
 
        ingresaPaciente($("#nombre").val(), $("#pApellido").val(),
        $("#sApellido").val(), $("#cedula").val(), $("#celular").val(),
@@ -41,7 +41,8 @@ function LlenaDoctoresJson(TextoJSON) {
     }
 }
 
-function ingresaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pcedula, pcelular, pcorreo, pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
+function ingresaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pcedula, pcelular, pcorreo,
+    pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
     try {
         $.ajax(
             {

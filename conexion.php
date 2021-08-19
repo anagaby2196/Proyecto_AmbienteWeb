@@ -1,5 +1,6 @@
 <?php
-  function Conecta(){	
+
+  function Conecta() {	
     $elServidor = "localhost";
     $elUsuario ="root";
     $elPassword = "";
@@ -10,35 +11,38 @@
     if ($laconexion->connect_error) {
       die("Error al Conectar con la BD: " . $laconexion->connect_error);
     } 
+
     //echo "Conexion exitosa <br>";
     
     return $laconexion;			
   }
-  function disconnectDB($conexion){
+
+  function disconnectDB($conexion) {
 
     $close = mysqli_close($conexion);
     
-        if($close){
+        if($close) {
             //echo 'La desconexion de la base de datos se ha hecho satisfactoriamente';
-        }else{
+        } else {
             //echo 'Ha sucedido un error inexperado en la desconexion de la base de datos';
         }   
     
     return $close;
     }
-  function getArray($sql){
-    //Creamos la conexión con la función anterior
+
+  function getArray($sql) {
+   
     $conexion = Conecta();
 
-    //generamos la consulta
+  
 
-    mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
+    mysqli_set_charset($conexion, "utf8");
 
-    if(!$result = mysqli_query($conexion, $sql)) die(); //si la conexión cancelar programa
+    if(!$result = mysqli_query($conexion, $sql)) die(); 
 
-    $rawdata = array(); //creamos un array
+    $rawdata = array(); 
 
-    //guardamos en un array multidimensional todos los datos de la consulta
+    
     $i=0;
 
     while($row = mysqli_fetch_array($result))
@@ -47,23 +51,23 @@
         $i++;
     }
 
-    disconnectDB($conexion); //desconectamos la base de datos
-
-    return $rawdata; //devolvemos el array
+    disconnectDB($conexion); 
+    return $rawdata; 
 }
-function getObjeto($sql){
-  //Creamos la conexión con la función anterior
+
+function getObjeto($sql) {
+  
   $conexion = connectDB();
 
-  //generamos la consulta
 
-  mysqli_set_charset($conexion, "utf8"); //formato de datos utf8
 
-  if(!$result = mysqli_query($conexion, $sql)) die(); //si la conexión cancelar programa
+  mysqli_set_charset($conexion, "utf8");
 
-  $rawdata = null; //creamos un array
+  if(!$result = mysqli_query($conexion, $sql)) die(); 
 
-  //guardamos en un array multidimensional todos los datos de la consulta
+  $rawdata = null;
+
+ 
   $i=0;
 
   while($row = mysqli_fetch_array($result))
@@ -72,31 +76,31 @@ function getObjeto($sql){
       $i++;
   }
 
-  disconnectDB($conexion); //desconectamos la base de datos
+  disconnectDB($conexion);
 
-  return $rawdata; //devolvemos el array
+  return $rawdata; 
 }
-function InsertaDatos($pnombrePaciente,$pprimerApellido,$psegundoApellido,$pcedula,$pcelular,$pcorreo,$pfechaNacimiento,$pidDoctor,$pfechaCita,$ppadecimiento)
-{
+
+function InsertaDatos($pnombrePaciente, $pprimerApellido, $psegundoApellido, $pcedula, $pcelular, $pcorreo, $pfechaNacimiento, $pidDoctor, $pfechaCita, $ppadecimiento) {
   $response = "";
   $conn = Conecta();
-  // prepare and bind
-  mysqli_set_charset($conn, "utf8"); //formato de datos utf8
 
-  $stmt = $conn->prepare("Call spInsertaCitaPaciente(?,?,?,?,?,?,?,?,?,?,?)");
-  $stmt->bind_param("sssissiiis", $inombrePaciente,$iprimerApellido,$isegundoApellido,$icedula,$icelular,$icorreo,$ifechaNacimiento,$iidDoctor,$ifechaCita,$ipadecimiento);
+  mysqli_set_charset($conn, "utf8");
+  
+  $stmt = $conn->prepare("Call spInsertaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("sssissiiis", $inombrePaciente, $iprimerApellido, $isegundoApellido, $icedula, $icelular, $icorreo, $ifechaNacimiento, $iidDoctor, $ifechaCita, $ipadecimiento);
 
-  // set parameters and execute
-  $inombrePaciente=$pnombrePaciente;
-  $iprimerApellido=$pprimerApellido;
-  $isegundoApellido=$psegundoApellido;
-  $icedula=$pcedula;
-  $icelular=$pcelular;
-  $icorreo=$pcorreo;
-  $ifechaNacimiento=$pfechaNacimiento;
-  $iidDoctor=$pidDoctor;
-  $ifechaCita=$pfechaCita;
-  $ipadecimiento=$ppadecimiento;
+
+  $inombrePaciente = $pnombrePaciente;
+  $iprimerApellido = $pprimerApellido;
+  $isegundoApellido = $psegundoApellido;
+  $icedula = $pcedula;
+  $icelular = $pcelular;
+  $icorreo = $pcorreo;
+  $ifechaNacimiento = $pfechaNacimiento;
+  $iidDoctor = $pidDoctor;
+  $ifechaCita = $pfechaCita;
+  $ipadecimiento = $ppadecimiento;
 
   $stmt->execute();
 
