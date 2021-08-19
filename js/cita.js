@@ -1,44 +1,49 @@
 $(document).ready(function () {
 
-    cargaTutorias();
+    cargaCitas();
 
-});//(document).ready ==============================
+});
 
-function cargaTutorias() {
+function cargaCitas() {
     try {
         $.ajax({
-            url: 'getTutorias.php'
+            url: 'getCitas.php'
         })
             .done(function (data) {
                 ImprTablaJson(data);
             });
     } catch (err) {
         alert(err);
-    }// fin catch
-}//fin Ajax_Completo ==============================
+    }
+}
 
 function ImprTablaJson(TextoJSON) {
     let ObjetoJSON = JSON.parse(TextoJSON);
 
-    $("#tutorias").append("<tr>");
-    $("#tutorias").append(" <th scope='col'> Alumno  </th>");
-    $("#tutorias").append(" <th scope='col'> Profesor </th>");
-    $("#tutorias").append(" <th scope='col'> Día  </th>");
-    $("#tutorias").append(" <th scope='col'> Hora </th>");
-    $("#tutorias").append(" <th scope='col'> Asunto </th>");
-    $("#tutorias").append(" <th scope='col'> Actualiza </th>");
-    $("#tutorias").append(" <th scope='col'> Elimina </th>");
-    $("#tutorias").append("</tr>");
+    $("#citas").append("<tr>");
+    $("#citas").append(" <th scope='col'> Doctor </th>");
+    $("#citas").append(" <th scope='col'> Paciente </th>");
+    $("#citas").append(" <th scope='col'> Cedula  </th>");
+    $("#citas").append(" <th scope='col'> Celular </th>");
+    $("#citas").append(" <th scope='col'> Correo </th>");
+    $("#citas").append(" <th scope='col'> Fecha de Nacimiento </th>");
+    $("#citas").append(" <th scope='col'> Fecha de la Cita </th>");
+    $("#citas").append(" <th scope='col'> Padecimiento </th>");
+    $("#citas").append(" <th scope='col'> Actualiza </th>");
+    $("#citas").append(" <th scope='col'> Elimina </th>");
+    $("#citas").append("</tr>");
 
     for (i = 0; i < ObjetoJSON.length; i++) {
-        $("#tutorias").append("<tr>");
-        $("#tutorias").append("<th scope='row'>" + ObjetoJSON[i].alumno + "</td> ");
-        $("#tutorias").append("<td>" + ObjetoJSON[i].profesor + "</td> ");
-        $("#tutorias").append("<td>" + ObjetoJSON[i].dia + "</td> ");
-        $("#tutorias").append("<td>" + ObjetoJSON[i].hora + "</td> ");
-        $("#tutorias").append("<td>" + ObjetoJSON[i].asunto + "</td> ");
-        $("#tutorias").append("<td>" + "<a href='actualizaTutoria.php?idTutoria=" + ObjetoJSON[i].id + "'>Modificar</a>" + "</td>");
-        $("#tutorias").append("<td>" + "<a href='eliminarTutoria.php?idTutoria=" + ObjetoJSON[i].id + "'>Eliminar</a>" + "</td>");
-        $("#tutorias").append("</tr>");
+        $("#citas").append("<tr>");
+        $("#citas").append("<th scope='row'>" + ObjetoJSON[i].idDoctor + "</td> ");
+        $("#citas").append("<td>" + ObjetoJSON[i].nombre + "</td> ");
+        $("#citas").append("<td>" + ObjetoJSON[i].cedula + "</td> ");
+        $("#citas").append("<td>" + ObjetoJSON[i].correo + "</td> ");
+        $("#citas").append("<td>" + ObjetoJSON[i].fechaNacimiento + "</td> ");
+        $("#citas").append("<td>" + ObjetoJSON[i].fechaCita + "</td> ");
+        $("#citas").append("<td>" + ObjetoJSON[i].padecimiento + "</td> ");
+        $("#citas").append("<td>" + "<a href='actualizaCita.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Modificar</a>" + "</td>");
+        $("#citas").append("<td>" + "<a href='eliminarCita.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Eliminar</a>" + "</td>");
+        $("#citas").append("</tr>");
     }
-}//Fin ImprTablaJson ================================================
+}
