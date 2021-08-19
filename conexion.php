@@ -83,19 +83,24 @@ function InsertaDatos($pnombrePaciente,$pprimerApellido,$psegundoApellido,$pcedu
   // prepare and bind
   mysqli_set_charset($conn, "utf8"); //formato de datos utf8
 
-  $stmt = $conn->prepare("Call spInsertaTutoria(?, ?, ?, ?, ?)");
-  $stmt->bind_param("siiis", $inombre, $iprofesor, $idia, $ihora, $iasunto);
+  $stmt = $conn->prepare("Call spInsertaCitaPaciente(?,?,?,?,?,?,?,?,?,?,?)");
+  $stmt->bind_param("sssissiiis", $inombrePaciente,$iprimerApellido,$isegundoApellido,$icedula,$icelular,$icorreo,$ifechaNacimiento,$iidDoctor,$ifechaCita,$ipadecimiento);
 
   // set parameters and execute
-  $inombre = $pnombreAlumno;
-  $iprofesor = $pidProfesor;
-  $idia = $pidDia;
-  $ihora = $phora;
-  $iasunto = $pasunto;
+  $inombrePaciente=$pnombrePaciente;
+  $iprimerApellido=$pprimerApellido;
+  $isegundoApellido=$psegundoApellido;
+  $icedula=$pcedula;
+  $icelular=$pcelular;
+  $icorreo=$pcorreo;
+  $ifechaNacimiento=$pfechaNacimiento;
+  $iidDoctor=$pidDoctor;
+  $ifechaCita=$pfechaCita;
+  $ipadecimiento=$ppadecimiento;
 
   $stmt->execute();
 
-  $response = "Se almaceno la tutoría satisfactoriamente";
+  $response = "Se almaceno la cita del paciente satisfactoriamente";
 
   $stmt->close();
   disconnectDB($conn);

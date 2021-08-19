@@ -122,9 +122,13 @@
   } else {
     $padecimientoOk = true;
   }
-  if ($nombrePaciente&& $primerApellido&& $segundoApellido&& $cedula&& $celular&& $correo&& $fechaNacimiento&& $idDoctor&& $fechaCita && $padecimiento){
+  if ($nombrePaciente&& $primerApellido&& $segundoApellido&& $cedula&& $celular&& $correo&&
+   $fechaNacimiento&& $idDoctor&& $fechaCita && $padecimiento){
+
       include 'conexion.php';
       //Una vez validados los datos vamos a proceder a insertarlos en base de datos
-      echo json_encode(InsertaPaciente($pnombrePaciente,$pprimerApellido,$psegundoApellido,$pcedula,$pcelular,$pcorreo,$pfechaNacimiento,$pidDoctor,$pfechaCita,$ppadecimiento)); 
+      echo json_encode(InsertaPaciente($pnombrePaciente,$pprimerApellido,$psegundoApellido,
+      $pcedula,$pcelular,$pcorreo,$pfechaNacimiento,$pidDoctor,$pfechaCita,$ppadecimiento)); 
   }
+  
   ?>
