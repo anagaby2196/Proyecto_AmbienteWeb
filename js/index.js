@@ -4,10 +4,8 @@ $(document).ready(function(){
 
    $("#btEnviar").click(function() {
 
-       ingresaPaciente($("#nombre").val(), $("#pApellido").val(),
-       $("#sApellido").val(), $("#cedula").val(), $("#celular").val(),
-       $("#correo").val(), $("#fechaNacimiento").val(), $("#idDoctor").val(),
-       $("#fechaCita").val(),$("#padecimiento").val());
+       ingresaPaciente($("#idDoctor").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(),
+       $("#correo").val(), $("#fechaNacimiento").val(), $("#fechaCita").val(), $("#padecimiento").val());
    });
 
    $("btRestablecer").click(function(){
@@ -41,20 +39,18 @@ function LlenaDoctoresJson(TextoJSON) {
     }
 }
 
-function ingresaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pcedula, pcelular, pcorreo,
-    pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
+function ingresaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo,
+                         pfechaNacimiento, pfechaCita, ppadecimiento) {
     try {
         $.ajax(
             {
                 data: {
+                    idDoctor: pidDoctor,
                     nombre: pnombrePaciente,
-                    pApellido: pprimerApellido,
-                    sApellido: psegundoApellido,
                     cedula: pcedula,
                     celular: pcelular,
                     correo: pcorreo,
                     fechaNacimiento: pfechaNacimiento,
-                    idDoctor: pidDoctor,
                     fechaCita: pfechaCita,
                     padecimiento: ppadecimiento,
 
@@ -87,14 +83,12 @@ function InsercionCitaFallida(TextoJSON) {
 }
 
 function LimpiaCampos() {
+    $("#idDoctor").val(''),
     $("#nombre").val(''),
-    $("#pApellido").val(''),
-    $("#sApellido").val(''),
     $("#cedula").val(''),
     $("#celular").val(''),
     $("#correo").val(''),
     $("#fechaNacimiento").val(''),
-    $("#idDoctor").val(''),
     $("#fechaCita").val(''),
     $("#padecimiento").val('')
 }

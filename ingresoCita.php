@@ -19,47 +19,40 @@
     return $tmp;
   }
 
+  $idDoctor = recoge("idDoctor");
   $nombrePaciente = recoge("nombre");
-  $primerApellido = recoge("primerApellido");
-  $segundoApellido = recoge("segundoApellido");
   $cedula = recoge("cedula");
   $celular = recoge("celular");
   $correo = recoge("correo");
   $fechaNacimiento = recoge("fechaNacimiento");
-  $idDoctor = recoge("idDoctor");
   $fechaCita = recoge("fechaCita");
   $padecimiento = recoge("padecimiento");
 
+  $idDoctorOk = false;
   $nombrePacienteOk = false;
-  $primerApellidoOk = false;
-  $segundoApellidoOk = false;
   $cedulaOk = false;
   $celularOk = false;
   $correoOk = false;
   $fechaNacimientoOk = false;
-  $idDoctorOk = false;
   $fechaCitaOk = false;
   $padecimientoOk =false;
+
+
+  if ($idDoctor == "") {
+    print "  <p class=\"aviso\">No ha seleccionado al Doctor.</p>\n";
+    print "\n";
+  } elseif (!is_numeric($idDoctor)) {
+    print "  <p class=\"aviso\">El dato del Doctor no es válido.</p>\n";
+    print "\n";
+  } else {
+    $idDoctorOk = true;
+  }
 
   if ($nombrePaciente == "") {
     print "  <p class=\"aviso\">No ha escrito el nombre del paciente.</p>\n";
     print "\n";
   } else {
     $nombrePacienteOk = true;
-  }
-
-  if ($primerApellido == "") {
-    print "  <p class=\"aviso\">No ha escrito el primer apellido del paciente.</p>\n";
-    print "\n";
-  } else {
-    $primerApellidoOk = true;
-  }
-
-  if ($segundoApellido == "") {
-    print "  <p class=\"aviso\">No ha escrito el segundo apellido del paciente.</p>\n";
-    print "\n";
-  } else {
-    $segundoApellidoOk = true;
   }
 
   if ($cedula == "") {
@@ -89,16 +82,6 @@
   } else {
     $fechaNacimientoOk = true;
   }
-
-  if ($idDoctor == "") {
-    print "  <p class=\"aviso\">No ha seleccionado al Doctor.</p>\n";
-    print "\n";
-  } elseif (!is_numeric($idDoctor)) {
-    print "  <p class=\"aviso\">El dato del Doctor no es válido.</p>\n";
-    print "\n";
-  } else {
-    $idDoctorOk = true;
-  }
   
   if ($fechaCita == "") {
     print "  <p class=\"aviso\">No ha seleccionado la fecha de la cita del paciente.</p>\n";
@@ -114,13 +97,13 @@
     $padecimientoOk = true;
   }
 
-  if ($nombrePacienteOk&& $primerApellidoOk&& $segundoApellidoOk&& $cedulaOk&& $celularOk&& $correoOk&&
-   $fechaNacimientoOk&& $idDoctorOk&& $fechaCitaOk && $padecimientoOk){
+  if ($idDoctorOk&& $nombrePacienteOk&& $cedulaOk&& $celularOk&& $correoOk&&
+      $fechaNacimientoOk&& $fechaCitaOk && $padecimientoOk){
 
       include 'conexion.php';
      
-      echo json_encode(InsertaDatos($nombrePaciente, $primerApellido, $segundoApellido, $cedula, $celular, $correo, $fechaNacimiento,
-      $idDoctor, $fechaCita, $padecimiento)); 
+      echo json_encode(InsertaDatos($idDoctor, $nombrePaciente, $cedula, $celular, $correo, $fechaNacimiento,
+                                    $fechaCita, $padecimiento)); 
   }
   
   ?>

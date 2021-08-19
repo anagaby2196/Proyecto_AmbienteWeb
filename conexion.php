@@ -81,24 +81,22 @@ function getObjeto($sql) {
   return $rawdata; 
 }
 
-function InsertaDatos($pnombrePaciente, $pprimerApellido, $psegundoApellido, $pcedula, $pcelular, $pcorreo, $pfechaNacimiento, $pidDoctor, $pfechaCita, $ppadecimiento) {
+function InsertaDatos($pidDoctor, $pnombrePaciente, $pcedula, $pcelular, $pcorreo,
+                      $pfechaNacimiento, $pfechaCita, $ppadecimiento) {
   $response = "";
   $conn = Conecta();
 
   mysqli_set_charset($conn, "utf8");
   
-  $stmt = $conn->prepare("Call spInsertaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("sssissiiis", $inombrePaciente, $iprimerApellido, $isegundoApellido, $icedula, $icelular, $icorreo, $ifechaNacimiento, $iidDoctor, $ifechaCita, $ipadecimiento);
+  $stmt = $conn->prepare("Call spInsertaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("isisssss",  $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita, $ipadecimiento);
 
-
+  $iidDoctor = $pidDoctor;
   $inombrePaciente = $pnombrePaciente;
-  $iprimerApellido = $pprimerApellido;
-  $isegundoApellido = $psegundoApellido;
   $icedula = $pcedula;
   $icelular = $pcelular;
   $icorreo = $pcorreo;
   $ifechaNacimiento = $pfechaNacimiento;
-  $iidDoctor = $pidDoctor;
   $ifechaCita = $pfechaCita;
   $ipadecimiento = $ppadecimiento;
 
@@ -111,7 +109,5 @@ function InsertaDatos($pnombrePaciente, $pprimerApellido, $psegundoApellido, $pc
 
   return $response;
 }
-
-
 
 ?>

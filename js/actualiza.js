@@ -3,10 +3,8 @@ $(document).ready(function () {
     cargaDoctores();
 
    $("#btEnviar").click(function() {
-       actualizaCitaPaciente($("#nombre").val(), $("#pApellido").val(),
-       $("#sApellido").val(), $("#cedula").val(), $("#celular").val(),
-       $("#correo").val(), $("#fechaNacimiento").val(), $("#idDoctor").val(),
-       $("#fechaCita").val(),$("#padecimiento").val());
+       actualizaCitaPaciente($("#idDoctor").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(),
+       $("#correo").val(), $("#fechaNacimiento").val(), $("#fechaCita").val(), $("#padecimiento").val());
    });
 
     $("#btRestablecer").click(function () {
@@ -42,19 +40,17 @@ function cargaCita() {
     }
 }
 
-function actualizaCitaPaciente(pnombrePaciente, pprimerApellido, psegundoApellido, pcedula, pcelular, pcorreo, pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
+function actualizaCitaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo, pfechaNacimiento, pfechaCita, ppadecimiento) {
     try {
         $.ajax(
             {
                 data: {
+                    idDoctor: pidDoctor,
                     nombre: pnombrePaciente,
-                    pApellido: pprimerApellido,
-                    sApellido: psegundoApellido,
                     cedula: pcedula,
                     celular: pcelular,
                     correo: pcorreo,
                     fechaNacimiento: pfechaNacimiento,
-                    idDoctor: pidDoctor,
                     fechaCita: pfechaCita,
                     padecimiento: ppadecimiento,
                 },
@@ -94,14 +90,12 @@ function ActualizacionInsercionCitaExitosa(TextoJSON) {
 }
 
 function LimpiaCampos() {
+    $("#idDoctor").val(''),
     $("#nombre").val(''),
-    $("#pApellido").val(''),
-    $("#sApellido").val(''),
     $("#cedula").val(''),
     $("#celular").val(''),
     $("#correo").val(''),
     $("#fechaNacimiento").val(''),
-    $("#idDoctor").val(''),
     $("#fechaCita").val(''),
     $("#padecimiento").val('')
 }
@@ -113,13 +107,11 @@ function ActualizacionCitaFallida(TextoJSON) {
 
 function LlenaCitaJson(TextoJSON) {
     var ObjetoJSON = JSON.parse(TextoJSON);
+    $('#idDoctor').val(ObjetoJSON.idDoctor);
     $('#nombre').val(ObjetoJSON.nombre);
-    $('#pApellido').val(ObjetoJSON.primerApellido);
-    $('#sApellido').val(ObjetoJSON.segundoApellido);
     $('#cedula').val(ObjetoJSON.cedula);
     $('#correo').val(ObjetoJSON.correo);
     $('#fechaNacimiento').val(ObjetoJSON.fechaNacimiento);
-    $('#idDoctor').val(ObjetoJSON.idDoctor);
     $('#fechaCita').val(ObjetoJSON.fechaCita);
     $('#padecimiento').val(ObjetoJSON.padecimiento);
 }
