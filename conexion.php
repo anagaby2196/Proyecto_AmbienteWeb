@@ -1,85 +1,70 @@
 <?php
 
-  function Conecta() {	
-    $elServidor = "localhost";
-    $elUsuario ="root";
-    $elPassword = "";
-    $laBD = "clinica";
+function Conecta() {	
 
-    $laconexion = new mysqli($elServidor, $elUsuario, $elPassword, $laBD);
-    
-    if ($laconexion->connect_error) {
-      die("Error al Conectar con la BD: " . $laconexion->connect_error);
-    } 
+  $servidor = "localhost";
+  $usuario ="root";
+  $password = "";
+  $BD = "clinica";
 
-    //echo "Conexion exitosa <br>";
+  $laconexion = mysqli_connect($servidor, $usuario, $password, $BD);
     
-    return $laconexion;			
-  }
-
-  function disconnectDB($conexion) {
-
-    $close = mysqli_close($conexion);
-    
-        if($close) {
-            //echo 'La desconexion de la base de datos se ha hecho satisfactoriamente';
-        } else {
-            //echo 'Ha sucedido un error inexperado en la desconexion de la base de datos';
-        }   
-    
-    return $close;
+    if($laconexion){
+      //echo 'La conexion de la base de datos se ha hecho satisfactoriamente';
+    }else{
+      //echo 'Ha sucedido un error inexperado en la conexion de la base de datos';
     }
+  return $laconexion;
+}//Fin Funcion Conexion
 
-  function getArray($sql) {
+function disconnectDB($laconexion) {
+
+  $close = mysqli_close($laconexion);
+    
+    if($close){
+      //echo 'La desconexion de la base de datos se ha hecho satisfactoriamente';
+    }else{
+      //echo 'Ha sucedido un error inexperado en la desconexion de la base de datos';
+    }   
+
+  return $close;
+}//Fin Funcion Desconexion
+
+function getArray($sql) {
    
-    $conexion = Conecta();
+  $laconexion = Conecta();
+  mysqli_set_charset($laconexion, "utf8");
 
-  
+    if(!$result = mysqli_query($laconexion, $sql)) die(); 
+      $rawdata = array(); 
+      $i=0;
 
-    mysqli_set_charset($conexion, "utf8");
-
-    if(!$result = mysqli_query($conexion, $sql)) die(); 
-
-    $rawdata = array(); 
-
-    
-    $i=0;
-
-    while($row = mysqli_fetch_array($result))
-    {
-        $rawdata[$i] = $row;
-        $i++;
+    while($row = mysqli_fetch_array($result)) {
+      $rawdata[$i] = $row;
+      $i++;
     }
 
-    disconnectDB($conexion); 
-    return $rawdata; 
-}
+    disconnectDB($laconexion); 
+  return $rawdata; 
+}// Fin Funcion GetArray
 
 function getObjeto($sql) {
   
-  $conexion = connectDB();
+  $laconexion = Conecta();
+  mysqli_set_charset($laconexion, "utf8");
 
+    if(!$result = mysqli_query($laconexion, $sql)) die(); 
+    $rawdata = null;
+    $i=0;
 
+    while($row = mysqli_fetch_array($result)) {
+    $rawdata = $row;
+    $i++;
+    }
 
-  mysqli_set_charset($conexion, "utf8");
-
-  if(!$result = mysqli_query($conexion, $sql)) die(); 
-
-  $rawdata = null;
-
- 
-  $i=0;
-
-  while($row = mysqli_fetch_array($result))
-  {
-      $rawdata = $row;
-      $i++;
-  }
-
-  disconnectDB($conexion);
-
+    disconnectDB($laconexion);
   return $rawdata; 
-}
+}// Fin Funcion GetObjeto
 
 function InsertaDatos($pidDoctor, $pnombrePaciente, $pcedula, $pcelular, $pcorreo,
                       $pfechaNacimiento, $pfechaCita, $ppadecimiento) {
@@ -108,6 +93,53 @@ function InsertaDatos($pidDoctor, $pnombrePaciente, $pcedula, $pcelular, $pcorre
   disconnectDB($conn);
 
   return $response;
-}
+}//Fin Funcion InsertaDatos
+
+function EliminaDatos($pidCitaPaciente)
+{
+  $response = "";
+  $conn = Conecta();
+  $stmt = $conn->prepare("Call spEliminaCita(?)");
+  $stmt->bind_param("i", $pidCitaPaciente);
+
+  $idCitaPaciente = $pidCitaPaciente;
+
+  $stmt->execute();
+
+  $response = "Se elimino la cita satisfactoriamente";
+
+  $stmt->close();
+  disconnectDB($conn);
+
+  return $response;
+}//Fin Funcion EliminaDatos
+
+function actualizaDatos($pidDoctor, $pnombrePaciente, $pcedula, $pcelular, $pcorreo,
+                        $pfechaNacimiento, $pfechaCita, $ppadecimiento) {
+  $response = "";
+  $conn = Conecta();
+  mysqli_set_charset($conn, "utf8");
+
+  $stmt = $conn->prepare("Call spActualizaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param("isisssss", $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita, $ipadecimiento);
+
+  $iidDoctor = $pidDoctor;
+  $inombrePaciente = $pnombrePaciente;
+  $icedula = $pcedula;
+  $icelular = $pcelular;
+  $icorreo = $pcorreo;
+  $ifechaNacimiento = $pfechaNacimiento;
+  $ifechaCita = $pfechaCita;
+  $ipadecimiento = $ppadecimiento;
+
+  $stmt->execute();
+
+  $response = "Se actualizó la cita satisfactoriamente";
+
+  $stmt->close();
+  disconnectDB($conn);
+
+  return $response;
+}//Fin Funcion ActualizaDatos
 
 ?>
