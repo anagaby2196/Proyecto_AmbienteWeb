@@ -119,6 +119,6 @@ function recoge($var, $m = "") {
      
       echo json_encode(actualizaDatos($idCitaPaciente, $nombrePaciente, $cedula, $celular, $correo, $fechaNacimiento,
                                     $fechaCita, $padecimiento)); 
-  }
+  }//Fin actualizaDatos
 
   ?>

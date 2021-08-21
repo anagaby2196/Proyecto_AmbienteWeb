@@ -17,7 +17,7 @@
       });
     }
     return $tmp;
-  }
+  }//Fin Funcion recoge
 
   $idDoctor = recoge("idDoctor");
   $nombrePaciente = recoge("nombre");
@@ -46,56 +46,56 @@
     print "\n";
   } else {
     $idDoctorOk = true;
-  }
+  }//Fin idDoctor
 
   if ($nombrePaciente == "") {
     print "  <p class=\"aviso\">No ha escrito el nombre del paciente.</p>\n";
     print "\n";
   } else {
     $nombrePacienteOk = true;
-  }
+  }//Fin nombrePaciente
 
   if ($cedula == "") {
     print "  <p class=\"aviso\">No ha escrito la cédula del paciente.</p>\n";
     print "\n";
   } else {
     $cedulaOk = true;
-  }
+  }//Fin cedula
 
   if ($celular == "") {
     print "  <p class=\"aviso\">No ha escrito el contacto del paciente.</p>\n";
     print "\n";
   } else {
     $celularOk = true;
-  }
+  }//Fin celular
 
   if ($correo == "") {
     print "  <p class=\"aviso\">No ha escrito el correo del paciente.</p>\n";
     print "\n";
   } else {
     $correoOk = true;
-  }
+  }//Fin correo
 
   if ($fechaNacimiento == "") {
     print "  <p class=\"aviso\">No ha ingresado la fecha de nacimiento del paciente.</p>\n";
     print "\n";
   } else {
     $fechaNacimientoOk = true;
-  }
+  }//Fin fechaNacimiento
   
   if ($fechaCita == "") {
     print "  <p class=\"aviso\">No ha seleccionado la fecha de la cita del paciente.</p>\n";
     print "\n";
   } else {
     $fechaCitaOk = true;
-  }
+  }//Fin fechaCita
 
   if ($padecimiento == "") {
     print "  <p class=\"aviso\">No ha escrito el padecimiento.</p>\n";
     print "\n";
   } else {
     $padecimientoOk = true;
-  }
+  }//Fin padecimiento
 
   if ($idDoctorOk&& $nombrePacienteOk&& $cedulaOk&& $celularOk&& $correoOk&&
       $fechaNacimientoOk&& $fechaCitaOk && $padecimientoOk){
@@ -104,6 +104,6 @@
      
       echo json_encode(InsertaDatos($idDoctor, $nombrePaciente, $cedula, $celular, $correo, $fechaNacimiento,
                                     $fechaCita, $padecimiento)); 
-  }
+  }//Fin InsertaDatos
   
   ?>

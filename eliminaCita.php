@@ -1,6 +1,5 @@
 <?php
-  function recoge($var, $m = "")
-  {
+  function recoge($var, $m = "") {
    
     if (!isset($_REQUEST[$var])) {
       $tmp = (is_array($m)) ? [] : "";
@@ -14,27 +13,26 @@
       });
     }
     return $tmp;
-  }
+  }//Fin Funcion recoge
 
   $idCitaPaciente = recoge("idCitaPaciente");
-
   $idCitaPacienteOk  = false;
 
   if ($idCitaPaciente == "") {
-    print "  <p class=\"aviso\">No ha envíado la Cita a eliminar.</p>\n";
+    print "  <p class=\"aviso\">No ha envíado la cita a eliminar.</p>\n";
     print "\n";
   } elseif (!is_numeric($idCitaPaciente)) {
-    print "  <p class=\"aviso\">El dato de la Cita no es válido.</p>\n";
+    print "  <p class=\"aviso\">El dato de la cita no es válido.</p>\n";
     print "\n";
   } else {
-    $idTutoriaOk = true;
-  }
+    $idCitaPacienteOk = true;
+  }//Fin idCitaPaciente
 
   if ($idCitaPacienteOk) {
-    include 'connection.php';
-    EliminaDato($idCitaPaciente);
-    header("Location: tutorias.html");
+    include 'conexion.php';
+    EliminaDatos($idCitaPaciente);
+    header("Location: citas.html");
 die();	
-  }
+  }//Fin idCitaPacienteOk
 
   ?>

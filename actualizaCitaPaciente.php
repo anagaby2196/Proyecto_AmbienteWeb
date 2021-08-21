@@ -12,13 +12,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="">
-    <script src="js/actualiza.js"></script>
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css">
+    <script src="js/actualiza.js"></script>
 
-    <link rel="stylesheet" href="bootstrap-4.4.1-dist/css/bootstrap.css">
-    <script src="bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
 
     <div class="padre">
         <img class="banner" src="imagenes/Banner.jpg" alt="" style="height: 255.8px;">
@@ -26,9 +24,8 @@
 
 </head>
 
-<body>
-
-<div class="padre">
+<body background="imagenes/pedicura-medica-running-portada2-1556794999.jpg">
+    <div class="padre">
         <header class="header">
             <div class="menu margen-interno">
                 <nav class="nav">
@@ -45,7 +42,6 @@
                     <a href="contacto.html"><i class="fas fa-envelope" style="padding: 0 2px;"></i><span
                             class="off">Contacto</span></a>
                 </nav>
-
                 <div class="social">
                     <div>
                         <a href="index.html"><i class="fab fa-facebook-square"></i></a>
@@ -53,11 +49,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div id="formCitas" class="main">
-                    <h3>Datos de las tutorías ingresadas al sistema</h3>
-                    <br>
-                    <div ID="pnlMensaje" title="Error" style="display:none">
+            <div class="registro margen-interno">
+                <br>
+                <h1><u><b>ACTUALIZACIÓN DE INFORMACIÓN</b></u></h1>
+                <div ID="pnlMensaje" title="Error" style="display:none">
                 <div>
                     <strong>Atención!</strong> Se ha presentado el siguiente problema.
                     <br />
@@ -76,7 +71,7 @@
             <?php
                 $idCitaPaciente =   $_REQUEST['idCitaPaciente'];
 	        ?>
-            <form action="post" action="ingresoCita.php" name="formularioRegistro">
+                <form action="post" action="ingresoCita.php" name="formularioRegistro">
                     <div class="registro">
                         <div class="form-group col-5">
                             <div class="">
@@ -121,8 +116,6 @@
                             style="width:112px;" />
                     </div>
                 </form>
-
-                </div>
             </div>
         </header>
         <footer class="footer margen-interno">
@@ -131,7 +124,5 @@
             </nav>
         </footer>
     </div>
-
 </body>
-
 </html>

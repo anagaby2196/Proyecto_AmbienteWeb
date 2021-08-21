@@ -52,6 +52,24 @@
             <div class="registro margen-interno">
                 <br>
                 <h1><u><b>FORMULARIO DE REGISTRO</b></u></h1>
+
+                <div ID="pnlMensaje" title="Error" style="display:none">
+                    <div>
+                        <strong>Atención!</strong> Se ha presentado el siguiente problema.
+                        <br />
+                        <br />
+                        <p ID="blMensajes"></p>
+                    </div>
+                </div>
+                <div ID="pnlInfo" title="Mensaje" style="display : none;">
+                    <div>
+                        <strong>Información!</strong> Procesamiento éxitoso.
+                        <br />
+                        <br />
+                        <p ID="blInfo"></p>
+                    </div>
+                </div>
+
                 <form action="post" action="ingresoCita.php" name="formularioRegistro">
                     <div class="registro">
                         <div class="form-group col-5">
