@@ -43,8 +43,8 @@ function ImprTablaJson(TextoJSON) {
         $("#citas").append("<td>" + ObjetoJSON[i].fechaNacimiento + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].fechaCita + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].padecimiento + "</td> ");
-        $("#citas").append("<td>" + "<a href='actualizaCitaPaciente.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Modificar</a>" + "</td>");
-        $("#citas").append("<td>" + "<a href='eliminaCita.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Eliminar</a>" + "</td>");
+        $("#citas").append("<td>" + "<a href='actualizaCitaPaciente.php?idCitaPaciente=" + ObjetoJSON[i].idCitaPaciente + "'>Modificar</a>" + "</td>");
+        $("#citas").append("<td>" + "<a href='eliminaCita.php?idCitaPaciente=" + ObjetoJSON[i].idCitaPaciente + "'>Eliminar</a>" + "</td>");
         $("#citas").append("</tr>");
     }
 }//Fin Funcion ImprTablaJson

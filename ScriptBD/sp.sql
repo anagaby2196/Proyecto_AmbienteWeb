@@ -40,12 +40,12 @@ DELIMITER ;
 
 --Inicio SPGETCITAPACIENTE
 
--- DELIMITER $$
--- CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitaPaciente`(IN `pidCitaPaciente ` INT)
--- SELECT c.idCitaPaciente, d.Nombre as Nombre_Doctor, c.nombre, c.cedula, c.celular, c.correo,
--- c.fechaNacimiento, c.fechaCita, c.padecimiento FROM citapaciente c, doctor d WHERE idcitaPaciente = pidCitaPaciente$$
-
--- DELIMITER ;
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitaPaciente`(IN `pidCitaPaciente ` INT)
+SELECT c.idCitaPaciente, d.Nombre as Nombre_Doctor, c.nombre, c.cedula, c.celular, c.correo,
+                                 c.fechaNacimiento, c.fechaCita, c.padecimiento FROM citapaciente c, doctor d
+                          WHERE idCitaPaciente = pidCitaPaciente AND D.idDoctor=C.idDoctor$$
+DELIMITER ;
 
 --Fin SPGETCITAPACIENTE
 

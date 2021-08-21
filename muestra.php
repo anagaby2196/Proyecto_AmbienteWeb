@@ -15,8 +15,6 @@
     <script src="js/jquery-3.5.1.js"></script>
     <script src="js/jquery-ui-1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="js/jquery-ui-1.12.1/jquery-ui.css">
-    <script src="js/actualiza.js"></script>
-
 
     <div class="padre">
         <img class="banner" src="imagenes/Banner.jpg" alt="" style="height: 255.8px;">
@@ -25,7 +23,7 @@
 </head>
 
 <body background="imagenes/pedicura-medica-running-portada2-1556794999.jpg">
-    <div class="padre">
+<div class="padre">
         <header class="header">
             <div class="menu margen-interno">
                 <nav class="nav">
@@ -111,10 +109,6 @@
                                 placeholder="Indique cuales son sus padecimientos"
                                 style="height:200px"></textarea><br><br>
                         </div>
-                        <input type="submit" name="btEnviar" value="Enviar datos" id="btEnviar" style="width:112px;" />
-                        &nbsp;
-                        <input type="reset" name="btRestablecer" value="Restablecer" id="btRestablecer"
-                            style="width:112px;" />
                     </div>
                 
             </div>
@@ -125,5 +119,91 @@
             </nav>
         </footer>
     </div>
+        <div class="main">
+            <?php
+            ImprimeDatos();
+
+            function Conecta() {	
+
+                $servidor = "localhost";
+                $usuario ="root";
+                $password = "";
+                $BD = "clinica";
+              
+                $laconexion = mysqli_connect($servidor, $usuario, $password, $BD);
+                  
+                  if($laconexion){
+                    //echo 'La conexion de la base de datos se ha hecho satisfactoriamente';
+                  }else{
+                    //echo 'Ha sucedido un error inexperado en la conexion de la base de datos';
+                  }
+                return $laconexion;
+              }//Fin Funcion Conexion
+
+            function ConsultaSQL($elQuery)
+            {
+                $laconexion = Conecta();
+                $queryDevuelto = $laconexion->query($elQuery);
+                return $queryDevuelto;
+            }
+
+            function ImprimeDatos()
+            {
+                $elSQL = "SELECT c.idCitaPaciente, d.Nombre as Nombre_Doctor, c.nombre, c.cedula, c.celular, c.correo,
+                c.fechaNacimiento, c.fechaCita, c.padecimiento FROM citapaciente c, doctor d
+         WHERE idCitaPaciente = pidCitaPaciente AND D.idDoctor=C.idDoctor";
+                $miQuery = ConsultaSQL($elSQL);
+                echo "<div id=ContactDiv>";
+                echo "<br>";
+                imprimeTabla($miQuery);
+                echo "</div>";
+            }
+
+            //Imprimir tabla
+            function imprimeTabla($miQuery)
+            {
+                echo "<table class='table'";
+                echo "<tr>";
+                echo " <th scope='col'> Doctor </th>";
+                echo " <th scope='col'> Paciente </th>";
+                echo " <th scope='col'> Cedula </th>";
+                echo " <th scope='col'> Celular </th>";
+                echo " <th scope='col'> Correo </th>";
+                echo " <th scope='col'> Fecha de Nacimiento </th>";
+                echo " <th scope='col'> Fecha de la Cita </th>";
+                echo " <th scope='col'> Padecimiento </th>";
+                echo " <th scope='col'> Actualiza </th>";
+                echo " <th scope='col'> Elimina </th>";
+                echo "</tr>";
+                if ($miQuery->num_rows > 0) {
+                    while ($row = $miQuery->fetch_assoc()) {
+                        echo "<tr>";
+                        echo "<th scope='row'>" . $row["Nombre_Doctor"] .      "</td> ";
+                        echo "<td>" . $row["nombre"] .      "</td> ";
+                        echo "<td>" . $row["cedula"] .      "</td> ";
+                        echo "<td>" . $row["celular"] .      "</td> ";
+                        echo "<td>" . $row["correo"] .      "</td> ";
+                        echo "<td>" . $row["fechaNacimiento"] .      "</td> ";
+                        echo "<td>" . $row["fechaCita"] .      "</td> ";
+                        echo "<td>" . $row["padecimiento"] .      "</td> ";
+                        echo "<td>" . "<a href='actualizaCitaPaciente.php?idcitaPaciente=" .  $row["idcitaPaciente"] .
+                            "'>Modificar</a>" .   "</td>";
+                        echo "<td>" . "<a href='eliminaCita.php?idcitaPaciente=" .  $row["idcitaPaciente"] .
+                            "'>Eliminar</a>" .   "</td>";
+                        echo "</tr>";
+                    }
+                } else {
+                    echo "<tr>";
+                    echo " <th> No se han registrado citas aún </th>";
+                    echo "</tr>";
+                    //    echo "0 Filas";
+                }
+                echo "</table>";
+            }
+            //End imprimeTabla  -----------------------------------------------------------
+
+            ?>
+        </div>
 </body>
+
 </html>
