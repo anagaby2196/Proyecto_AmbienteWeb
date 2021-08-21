@@ -1,10 +1,11 @@
 $(document).ready(function () {
     
     cargaDoctores();
+    cargaCita();
 
    $("#btEnviar").click(function() {
-       actualizaCitaPaciente($("#idDoctor").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(),
-       $("#correo").val(), $("#fechaNacimiento").val(), $("#fechaCita").val(), $("#padecimiento").val());
+       actualizaCitaPaciente($("#idCitaPaciente").val(),$("#idDoctor").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(),
+                             $("#correo").val(), $("#fechaNacimiento").val(), $("#fechaCita").val(), $("#padecimiento").val());
    });
 
     $("#btRestablecer").click(function () {
@@ -12,11 +13,11 @@ $(document).ready(function () {
     });
     
 
-});
+});// Fin document.ready
 
 function cargaDoctores() {
     try {
-        $.ajax({
+        $.ajax ({
             url: 'getDoctores.php'
         })
             .done(function (data) {
@@ -25,11 +26,11 @@ function cargaDoctores() {
     } catch (err) {
         alert(err);
     }
-}
+}//Fin Funcion cargaDoctores
 
 function cargaCita() {
     try {
-        $.ajax({
+        $.ajax ({
             url: 'getCita.php?idCitaPaciente=' + $("#idCitaPaciente").val()
         })
             .done(function (data) {
@@ -38,13 +39,14 @@ function cargaCita() {
     } catch (err) {
         alert(err);
     }
-}
+}//Fin Funcion cargaCita
 
-function actualizaCitaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo, pfechaNacimiento, pfechaCita, ppadecimiento) {
+function actualizaCitaPaciente(pidCitaPaciente, pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo, pfechaNacimiento, pfechaCita, ppadecimiento) {
     try {
         $.ajax(
             {
                 data: {
+                    idCitaPaciente: pidCitaPaciente,
                     idDoctor: pidDoctor,
                     nombre: pnombrePaciente,
                     cedula: pcedula,
@@ -59,7 +61,7 @@ function actualizaCitaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pc
                 dataType: 'json',
                
                 success: function (r) {
-                    ActualizacionInsercionCitaExitosa(r);
+                    ActualizacionCitaExitosa(r);
                 },
                 error: function (r) {
                     ActualizacionCitaFallida(r);
@@ -68,7 +70,7 @@ function actualizaCitaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pc
     } catch (err) {
         alert(err);
     }
-}
+}// Fin Funcion actualizaCitaPaciente
 
 function LlenaDoctoresJson(TextoJSON) {
     var elValor;
@@ -79,15 +81,20 @@ function LlenaDoctoresJson(TextoJSON) {
         elHTML = ObjetoJSON[i].Nombre;
         $('#idDoctor').append($('<option></option>').val(elValor).html(elHTML));
     }
-}
+}//Fin Funcion LlenaDoctoresJSON
 
-function ActualizacionInsercionCitaExitosa(TextoJSON) {
+function ActualizacionCitaExitosa(TextoJSON) {
 
     $("#pnlInfo").dialog();
     $("#blInfo").html('<p>' + TextoJSON + '</p>');
     LimpiaCampos();
     window.location.replace("registro.html");
-}
+}//Fin Funcion ActualizacionInsercionCitaExitosa
+
+function ActualizacionCitaFallida(TextoJSON) {
+    $("#pnlMensaje").dialog();
+    $("#pnlMensaje").html('<p>Ocurrió un error en el servidor ..</p>' + TextoJSON.responseText);
+}//Fin Funcion ActualizacionCitaFallida
 
 function LimpiaCampos() {
     $("#idDoctor").val(''),
@@ -97,13 +104,8 @@ function LimpiaCampos() {
     $("#correo").val(''),
     $("#fechaNacimiento").val(''),
     $("#fechaCita").val(''),
-    $("#padecimiento").val('')
-}
-
-function ActualizacionCitaFallida(TextoJSON) {
-    $("#pnlMensaje").dialog();
-    $("#pnlMensaje").html('<p>Ocurrio un error en el servidor ..</p>' + TextoJSON.responseText);
-}
+    $("#padecimiento").val('');
+}//Fin Funcion LimpiaCampos
 
 function LlenaCitaJson(TextoJSON) {
     var ObjetoJSON = JSON.parse(TextoJSON);
@@ -114,4 +116,4 @@ function LlenaCitaJson(TextoJSON) {
     $('#fechaNacimiento').val(ObjetoJSON.fechaNacimiento);
     $('#fechaCita').val(ObjetoJSON.fechaCita);
     $('#padecimiento').val(ObjetoJSON.padecimiento);
-}
+}//Fin Funcion LlenaCitaJSON

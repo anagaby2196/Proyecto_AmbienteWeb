@@ -115,13 +115,13 @@ function EliminaDatos($pidCitaPaciente)
 }//Fin Funcion EliminaDatos
 
 function actualizaDatos($pidDoctor, $pnombrePaciente, $pcedula, $pcelular, $pcorreo,
-                        $pfechaNacimiento, $pfechaCita, $ppadecimiento) {
+                        $pfechaNacimiento, $pfechaCita, $ppadecimiento, $pidCitaPaciente) {
   $response = "";
   $conn = Conecta();
   mysqli_set_charset($conn, "utf8");
 
   $stmt = $conn->prepare("Call spActualizaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("isisssss", $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita, $ipadecimiento);
+  $stmt->bind_param("isisssssi", $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita, $ipadecimiento, $iidCitaPaciente);
 
   $iidDoctor = $pidDoctor;
   $inombrePaciente = $pnombrePaciente;
@@ -131,6 +131,7 @@ function actualizaDatos($pidDoctor, $pnombrePaciente, $pcedula, $pcelular, $pcor
   $ifechaNacimiento = $pfechaNacimiento;
   $ifechaCita = $pfechaCita;
   $ipadecimiento = $ppadecimiento;
+  $iidCitaPaciente = $pidCitaPaciente;
 
   $stmt->execute();
 

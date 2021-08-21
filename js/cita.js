@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     cargaCitas();
 
-});
+});//Fin document.ready
 
 function cargaCitas() {
     try {
@@ -15,7 +15,7 @@ function cargaCitas() {
     } catch (err) {
         alert(err);
     }
-}
+}//Fin Funcion cargaCitas
 
 function ImprTablaJson(TextoJSON) {
     let ObjetoJSON = JSON.parse(TextoJSON);
@@ -42,8 +42,8 @@ function ImprTablaJson(TextoJSON) {
         $("#citas").append("<td>" + ObjetoJSON[i].fechaNacimiento + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].fechaCita + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].padecimiento + "</td> ");
-        $("#citas").append("<td>" + "<a href='actualizaCita.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Modificar</a>" + "</td>");
-        $("#citas").append("<td>" + "<a href='eliminarCita.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Eliminar</a>" + "</td>");
+        $("#citas").append("<td>" + "<a href='actualizaCitaPaciente.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Modificar</a>" + "</td>");
+        $("#citas").append("<td>" + "<a href='eliminaCita.php?idCitaPaciente=" + ObjetoJSON[i].id + "'>Eliminar</a>" + "</td>");
         $("#citas").append("</tr>");
     }
-}
+}//Fin Funcion ImprTablaJson

@@ -12,7 +12,7 @@ $(document).ready(function () {
 
         LimpiaCampos();
     });
-});
+});//Final de document.ready
 
 
 function cargaDoctores() {
@@ -26,7 +26,7 @@ function cargaDoctores() {
     } catch (err) {
         alert(err);
     }
-}
+}//Fin Funcion cargaDoctores
 
 function LlenaDoctoresJson(TextoJSON) {
     var elValor;
@@ -37,10 +37,10 @@ function LlenaDoctoresJson(TextoJSON) {
         elHTML = ObjetoJSON[i].Nombre;
         $('#idDoctor').append($('<option></option>').val(elValor).html(elHTML));
     }
-}
+}//Fin LlenaDoctoresJSON
 
 function ingresaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo,
-    pfechaNacimiento, pfechaCita, ppadecimiento) {
+                         pfechaNacimiento, pfechaCita, ppadecimiento) {
     try {
         $.ajax(
             {
@@ -58,11 +58,7 @@ function ingresaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo,
                 url: 'ingresoCita.php',
                 type: 'POST',
                 dataType: 'json',
-                // beforeSend: function () 
-                //  {
-                //     $("#pnlInfo").fadeTo("slow");
-                //     $("#pnlMensaje").fadeTo("slow");
-                //  },
+    
                 success: function (r) {
                     InsercionCitaExitosa(r);
                 },
@@ -73,19 +69,20 @@ function ingresaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo,
     } catch (err) {
         alert(err);
     }
-}
+}//Fin Funcion ingresaPaciente
 
 function InsercionCitaExitosa(TextoJSON) {
 
     $("#pnlInfo").dialog();
     $("#blInfo").html('<p>' + TextoJSON + '</p>');
     LimpiaCampos();
-}//Fin InsercionCitaExitosa ================================================
+}//Fin Funcion InsercionCitaExitosa ================================================
 
 function InsercionCitaFallida(TextoJSON) {
+
     $("#pnlMensaje").dialog();
-    $("#pnlMensaje").html('<p>Ocurrio un error en el servidor..</p>' + TextoJSON.responseText);
-}//Fin InsercionCitaFallida ================================================
+    $("#pnlMensaje").html('<p>Ocurrió un error en el servidor..</p>' + TextoJSON.responseText);
+}//Fin Funcion InsercionCitaFallida ================================================
 
 function LimpiaCampos() {
         $("#idDoctor").val(''),
@@ -95,5 +92,5 @@ function LimpiaCampos() {
         $("#correo").val(''),
         $("#fechaNacimiento").val(''),
         $("#fechaCita").val(''),
-        $("#padecimiento").val('')
-}
+        $("#padecimiento").val('');
+}// Fin Funcion LimpiaCampos
