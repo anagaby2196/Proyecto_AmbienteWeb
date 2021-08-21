@@ -215,3 +215,11 @@ a{
    background-repeat:no-repeat;
 }
 
+.h5{
+    font-size: 21px;
+                font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                color: #000;
+                
+                text-align: center;
+                line-height: 1.6;
+}

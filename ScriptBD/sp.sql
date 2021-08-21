@@ -8,14 +8,17 @@ INSERT INTO citapaciente(idDoctor, nombre, cedula, celular, correo, fechaNacimie
 (pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo, pfechaNacimiento, pfechaCita, ppadecimiento)$$
 DELIMITER ;
 
--- Fin SPINSERTACITAPACIENTE
+--Fin SPINSERTACITAPACIENTE
 
---SP GETDOCTORES
+--Inicio SPGETDOCTORES
+
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetDoctores`()
     SQL SECURITY INVOKER
 SELECT idDoctor, Nombre from doctor$$
 DELIMITER ;
+
+--Fin SPGETDOCTORES
 
 --Inicio SPELIMINACITA
 
@@ -26,21 +29,27 @@ DELIMITER ;
 
 --Fin SPELIMINACITA
 
---SP SPGETCITASPACIENTES
+--Inicio SPGETCITASPACIENTES
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitasPacientes`()
 SELECT c.idCitaPaciente, d.Nombre as Nombre_Doctor, c.nombre, c.cedula, c.celular, c.correo, c.fechaNacimiento, c.fechaCita, c.padecimiento
   		FROM citapaciente c, doctor d where c.idDoctor = d.idDoctor$$
 DELIMITER ;
 
---SP SPGETCITAPACIENTE
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitaPaciente`(IN `pidCitaPaciente ` INT)
-SELECT idCitaPaciente,idDoctor,nombre,cedula,celular,correo,
-fechaNacimiento,fechaCita, padecimiento WHERE idcitaPaciente = pidCitaPaciente$$
-DELIMITER ;
+--Fin SPGETCITASPACIENTES
 
---Inicio SPSPACTUALIZACITAPACIENTE
+--Inicio SPGETCITAPACIENTE
+
+-- DELIMITER $$
+-- CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitaPaciente`(IN `pidCitaPaciente ` INT)
+-- SELECT c.idCitaPaciente, d.Nombre as Nombre_Doctor, c.nombre, c.cedula, c.celular, c.correo,
+-- c.fechaNacimiento, c.fechaCita, c.padecimiento FROM citapaciente c, doctor d WHERE idcitaPaciente = pidCitaPaciente$$
+
+-- DELIMITER ;
+
+--Fin SPGETCITAPACIENTE
+
+--Inicio SPACTUALIZACITAPACIENTE
 
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spActualizaCitaPaciente`(IN `pidDoctor` INT(11) UNSIGNED, IN `pnombrePaciente` VARCHAR(100), IN `pcedula` INT(10) UNSIGNED, IN `pcelular` VARCHAR(30), IN `pcorreo` VARCHAR(30), IN `pfechaNacimiento` DATE, IN `pfechaCita` DATE, IN `ppadecimiento` VARCHAR(200))
@@ -58,13 +67,3 @@ UPDATE citapaciente
 DELIMITER ;
 
 --Fin SPSPACTUALIZACITAPACIENTE
-
-
-
-
-
-
-
-
-
-

@@ -35,9 +35,10 @@ function ImprTablaJson(TextoJSON) {
 
     for (i = 0; i < ObjetoJSON.length; i++) {
         $("#citas").append("<tr>");
-        $("#citas").append("<th scope='row'>" + ObjetoJSON[i].idDoctor + "</td> ");
+        $("#citas").append("<th scope='row'>" + ObjetoJSON[i].Nombre_Doctor + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].nombre + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].cedula + "</td> ");
+        $("#citas").append("<td>" + ObjetoJSON[i].celular + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].correo + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].fechaNacimiento + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].fechaCita + "</td> ");
