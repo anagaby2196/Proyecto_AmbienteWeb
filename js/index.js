@@ -71,18 +71,18 @@ function ingresaPaciente(pidDoctor, pnombrePaciente, pcedula, pcelular, pcorreo,
     }
 }//Fin Funcion ingresaPaciente
 
-function InsercionCitaExitosa(TextoJSON) {
+function InsercionCitaExitosa(ObjetoJSON) {
 
     $("#pnlInfo").dialog();
-    $("#blInfo").html('<p>' + TextoJSON + '</p>');
+    $("#blInfo").html('<p>' + ObjetoJSON.mensaje + '</p>');
     LimpiaCampos();
-}//Fin Funcion InsercionCitaExitosa ================================================
+}//Fin Funcion InsercionCitaExitosa 
 
-function InsercionCitaFallida(TextoJSON) {
+function InsercionCitaFallida(ObjetoJSON) {
 
     $("#pnlMensaje").dialog();
-    $("#pnlMensaje").html('<p>Ocurrió un error en el servidor..</p>' + TextoJSON.responseText);
-}//Fin Funcion InsercionCitaFallida ================================================
+    $("#pnlMensaje").html('<p>Ocurrió un error en el servidor..</p>' + ObjetoJSON.mensaje);
+}//Fin Funcion InsercionCitaFallida
 
 function LimpiaCampos() {
         $("#idDoctor").val(''),
