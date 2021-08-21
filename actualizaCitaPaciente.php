@@ -69,10 +69,10 @@
                 </div>
             </div>
             <?php
-                $idCitaPaciente =   $_REQUEST['idCitaPaciente'];
+                $pidCitaPaciente =   $_REQUEST['pidCitaPaciente'];
 	        ?>
                 
-                <input name="idCitaPaciente" type="text" id="idCitaPaciente" value='<?php echo $idCitaPaciente ?>' hidden /><br />
+                <input name="pidCitaPaciente" type="text" id="pidCitaPaciente" value='<?php echo $pidCitaPaciente ?>' hidden /><br />
                     <div class="registro">
                         <div class="form-group col-5">
                             <div class="">

@@ -105,20 +105,13 @@ function recoge($var, $m = "") {
     $padecimientoOk = true;
   }//Fin padecimiento
 
-  if ($nombreAlumnoOk && $idProfesorOk && $idDiaOk && $horaOk && $asuntoOk && $idTutoriaOk) {
-    include 'connection.php';
-    //Una vez validados los datos vamos a proceder a insertarlos en base de datos
-    echo json_encode(actualizaDatos($idTutoria,$nombreAlumno, $idProfesor, $idDia, $hora, $asunto));
-
-  }
-
   if ($idDoctorOk&& $nombrePacienteOk&& $cedulaOk&& $celularOk&& $correoOk&&
       $fechaNacimientoOk&& $fechaCitaOk && $padecimientoOk){
 
       include 'conexion.php';
      
-      echo json_encode(actualizaDatos($idCitaPaciente, $nombrePaciente, $cedula, $celular, $correo, $fechaNacimiento,
-                                    $fechaCita, $padecimiento)); 
+      echo json_encode(actualizaDatos($idCitaPaciente, $idDoctor, $nombrePaciente, $cedula, $celular, $correo, $fechaNacimiento,
+                                    $fechaCita, $padecimiento));
   }//Fin actualizaDatos
 
   ?>

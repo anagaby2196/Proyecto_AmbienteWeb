@@ -4,8 +4,8 @@ $(document).ready(function () {
     cargaCita();
 
    $("#btEnviar").click(function() {
-       actualizaCitaPaciente($("#idCitaPaciente").val(),$("#idDoctor").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(),
-                             $("#correo").val(), $("#fechaNacimiento").val(), $("#fechaCita").val(), $("#padecimiento").val());
+       actualizaCitaPaciente($("#idCitaPaciente").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(), $("#correo").val(), $("#fechaNacimiento").val(),
+                             $("#idDoctor").val(), $("#fechaCita").val(), $("#padecimiento").val());
    });
 
     $("#btRestablecer").click(function () {
@@ -31,7 +31,7 @@ function cargaDoctores() {
 function cargaCita() {
     try {
         $.ajax ({
-            url: 'getCita.php?idCitaPaciente=' + $("#idCitaPaciente").val()
+            url: 'getCita.php?pidCitaPaciente=' + $("#pidCitaPaciente").val()
         })
             .done(function (data) {
                 LlenaCitaJson(data);
