@@ -172,8 +172,8 @@
                 echo " <th scope='col'> Fecha de Nacimiento </th>";
                 echo " <th scope='col'> Fecha de la Cita </th>";
                 echo " <th scope='col'> Padecimiento </th>";
-                echo " <th scope='col'> Actualiza </th>";
-                echo " <th scope='col'> Elimina </th>";
+                echo " <th scope='col'> Actualizar </th>";
+                echo " <th scope='col'> Eliminar </th>";
                 echo "</tr>";
                 if ($miQuery->num_rows > 0) {
                     while ($row = $miQuery->fetch_assoc()) {

@@ -111,7 +111,7 @@
                                 placeholder="Indique cuales son sus padecimientos"
                                 style="height:200px"></textarea><br><br>
                         </div>
-                        <input type="submit" name="btEnviar" value="Enviar datos" id="btEnviar" style="width:112px;" />
+                        <input type="submit" name="btEnviar" value="Actualizar Datos" id="btEnviar" style="width:112px;" />
                         &nbsp;
                         <input type="reset" name="btRestablecer" value="Restablecer" id="btRestablecer"
                             style="width:112px;" />

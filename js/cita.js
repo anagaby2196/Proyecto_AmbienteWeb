@@ -29,8 +29,8 @@ function ImprTablaJson(TextoJSON) {
     $("#citas").append(" <th scope='col'> Fecha de Nacimiento </th>");
     $("#citas").append(" <th scope='col'> Fecha de la Cita </th>");
     $("#citas").append(" <th scope='col'> Padecimiento </th>");
-    $("#citas").append(" <th scope='col'> Actualiza </th>");
-    $("#citas").append(" <th scope='col'> Elimina </th>");
+    $("#citas").append(" <th scope='col'> Actualizar </th>");
+    $("#citas").append(" <th scope='col'> Eliminar </th>");
     $("#citas").append("</tr>");
 
     for (i = 0; i < ObjetoJSON.length; i++) {
@@ -43,7 +43,7 @@ function ImprTablaJson(TextoJSON) {
         $("#citas").append("<td>" + ObjetoJSON[i].fechaNacimiento + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].fechaCita + "</td> ");
         $("#citas").append("<td>" + ObjetoJSON[i].padecimiento + "</td> ");
-        $("#citas").append("<td>" + "<a href='actualizaCitaPaciente.php?idCitaPaciente=" + ObjetoJSON[i].idCitaPaciente + "'>Modificar</a>" + "</td>");
+        $("#citas").append("<td>" + "<a href='actualizaCitaPaciente.php?idCitaPaciente=" + ObjetoJSON[i].idCitaPaciente + "'>Actualizar</a>" + "</td>");
         $("#citas").append("<td>" + "<a href='eliminaCita.php?idCitaPaciente=" + ObjetoJSON[i].idCitaPaciente + "'>Eliminar</a>" + "</td>");
         $("#citas").append("</tr>");
     }

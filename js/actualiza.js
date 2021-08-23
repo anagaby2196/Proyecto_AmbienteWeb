@@ -42,16 +42,17 @@ function cargaCita() {
 }//Fin Funcion cargaCita
 
 function actualizaCitaPaciente(pidCitaPaciente, pnombrePaciente, pcedula, pcelular, pcorreo, pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
+
     try {
         $.ajax(
             {
-                data: {
+                data: {                      
                     idCitaPaciente: pidCitaPaciente,
                     nombre: pnombrePaciente,
                     cedula: pcedula,
                     celular: pcelular,
                     correo: pcorreo,
-                    fechaNacimiento: pfechaNacimiento,
+                    fechaNacimiento:pfechaNacimiento,
                     idDoctor: pidDoctor,
                     fechaCita: pfechaCita,
                     padecimiento: ppadecimiento,

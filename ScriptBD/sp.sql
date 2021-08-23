@@ -30,6 +30,7 @@ DELIMITER ;
 --Fin SPELIMINACITA
 
 --Inicio SPGETCITASPACIENTES
+
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitasPacientes`()
 SELECT c.idCitaPaciente, d.Nombre as Nombre_Doctor, c.nombre, c.cedula, c.celular, c.correo, c.fechaNacimiento, c.fechaCita, c.padecimiento
