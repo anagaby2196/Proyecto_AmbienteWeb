@@ -145,7 +145,6 @@ function actualizaDatos(
   mysqli_set_charset($conn, "utf8");
 
   $stmt = $conn->prepare("Call spActualizaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  // $stmt->bind_param("iisisssss" , $iidCitaPaciente, $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita, $ipadecimiento);
   $stmt->bind_param("siisissss" ,  $ipadecimiento, $iidCitaPaciente, $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita,);
  
   $iidCitaPaciente = $pidCitaPaciente;
