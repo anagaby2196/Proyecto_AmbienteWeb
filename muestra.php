@@ -186,9 +186,9 @@
                         echo "<td>" . $row["fechaNacimiento"] .      "</td> ";
                         echo "<td>" . $row["fechaCita"] .      "</td> ";
                         echo "<td>" . $row["padecimiento"] .      "</td> ";
-                        echo "<td>" . "<a href='actualizaCitaPaciente.php?idcitaPaciente=" .  $row["idcitaPaciente"] .
+                        echo "<td>" . "<a href='actualizaCitaPaciente.php?idCitaPaciente=" .  $row["idCitaPaciente"] .
                             "'>Modificar</a>" .   "</td>";
-                        echo "<td>" . "<a href='eliminaCita.php?idcitaPaciente=" .  $row["idcitaPaciente"] .
+                        echo "<td>" . "<a href='eliminaCita.php?idCitaPaciente=" .  $row["idCitaPaciente"] .
                             "'>Eliminar</a>" .   "</td>";
                         echo "</tr>";
                     }

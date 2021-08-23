@@ -1,6 +1,6 @@
 <?php
 
-$idCitaPaciente =   $_GET['idCitaPaciente'];
+$idCitaPaciente =   $_GET['pidCitaPaciente'];
 include 'conexion.php';
 $elSQL = "Call spGetCitaPaciente($idCitaPaciente)";
 $myArray = getObjeto($elSQL);

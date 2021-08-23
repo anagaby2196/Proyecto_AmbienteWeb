@@ -41,7 +41,7 @@ DELIMITER ;
 --Inicio SPGETCITAPACIENTE
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitaPaciente`(IN `idCitaPaciente` INT)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spGetCitaPaciente`(IN `pidCitaPaciente` INT)
 SELECT nombre, cedula, celular, correo, fechaNacimiento, idDoctor, fechaCita, padecimiento FROM citapaciente
                           WHERE idCitaPaciente = pidCitaPaciente$$
 DELIMITER ;

@@ -69,7 +69,7 @@
                 </div>
             </div>
             <?php
-                $pidCitaPaciente =   $_REQUEST['pidCitaPaciente'];
+                $pidCitaPaciente =   $_REQUEST['idCitaPaciente'];
 	        ?>
                 
                 <input name="pidCitaPaciente" type="text" id="pidCitaPaciente" value='<?php echo $pidCitaPaciente ?>' hidden /><br />
