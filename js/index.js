@@ -8,7 +8,7 @@ $(document).ready(function () {
             $("#correo").val(), $("#fechaNacimiento").val(), $("#fechaCita").val(), $("#padecimiento").val());
     });
 
-    $("btRestablecer").click(function () {
+    $("#btRestablecer").click(function () {
 
         LimpiaCampos();
     });
@@ -85,7 +85,7 @@ function InsercionCitaFallida(ObjetoJSON) {
 }//Fin Funcion InsercionCitaFallida
 
 function LimpiaCampos() {
-        $("#idDoctor").val(''),
+        $("#idDoctor").val("3"),
         $("#nombre").val(''),
         $("#cedula").val(''),
         $("#celular").val(''),
