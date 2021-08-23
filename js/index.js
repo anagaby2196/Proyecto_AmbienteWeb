@@ -78,10 +78,9 @@ function InsercionCitaExitosa(ObjetoJSON) {
     LimpiaCampos();
 }//Fin Funcion InsercionCitaExitosa 
 
-function InsercionCitaFallida(ObjetoJSON) {
-
+function InsercionCitaFallida(TextoJSON) {
     $("#pnlMensaje").dialog();
-    $("#pnlMensaje").html('<p>Ocurrió un error en el servidor..</p>' + ObjetoJSON.mensaje);
+    $("#pnlMensaje").html('<p>Ocurrio un error en el servidor ..</p>' + TextoJSON.responseText);
 }//Fin Funcion InsercionCitaFallida
 
 function LimpiaCampos() {
