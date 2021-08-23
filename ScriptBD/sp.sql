@@ -51,7 +51,7 @@ DELIMITER ;
 --Inicio SPACTUALIZACITAPACIENTE
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spActualizaCitaPaciente`(IN `pidDoctor` INT(11) UNSIGNED, IN `pnombrePaciente` VARCHAR(100), IN `pcedula` INT(10) UNSIGNED, IN `pcelular` VARCHAR(30), IN `pcorreo` VARCHAR(30), IN `pfechaNacimiento` DATE, IN `pfechaCita` DATE, IN `ppadecimiento` VARCHAR(200))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `spActualizaCitaPaciente`(IN `pidDoctor` INT(11) UNSIGNED, IN `pnombrePaciente` VARCHAR(100), IN `pcedula` INT(10) UNSIGNED, IN `pcelular` VARCHAR(30), IN `pcorreo` VARCHAR(30), IN `pfechaNacimiento` DATE, IN `pfechaCita` DATE, IN `ppadecimiento` VARCHAR(200), IN `pidCitaPaciente` INT)
 UPDATE citapaciente
         SET
         idDoctor=pidDoctor,

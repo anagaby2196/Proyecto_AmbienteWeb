@@ -130,6 +130,7 @@ function EliminaDatos($pidCitaPaciente)
 
 function actualizaDatos(
   $pidDoctor,
+  $pidCitaPaciente,
   $pnombrePaciente,
   $pcedula,
   $pcelular,
@@ -137,15 +138,17 @@ function actualizaDatos(
   $pfechaNacimiento,
   $pfechaCita,
   $ppadecimiento,
-  $pidCitaPaciente
+  
 ) {
   $response = "";
   $conn = Conecta();
   mysqli_set_charset($conn, "utf8");
 
-  $stmt = $conn->prepare("Call spActualizaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("isisssssi", $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita, $ipadecimiento, $iidCitaPaciente);
-
+  $stmt = $conn->prepare("Call spActualizaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  // $stmt->bind_param("iisisssss" , $iidCitaPaciente, $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita, $ipadecimiento);
+  $stmt->bind_param("siisissss" ,  $ipadecimiento, $iidCitaPaciente, $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita,);
+ 
+  $iidCitaPaciente = $pidCitaPaciente;
   $iidDoctor = $pidDoctor;
   $inombrePaciente = $pnombrePaciente;
   $icedula = $pcedula;
@@ -154,8 +157,7 @@ function actualizaDatos(
   $ifechaNacimiento = $pfechaNacimiento;
   $ifechaCita = $pfechaCita;
   $ipadecimiento = $ppadecimiento;
-  $iidCitaPaciente = $pidCitaPaciente;
-
+ 
   $stmt->execute();
 
   $response = "Se actualizó la cita satisfactoriamente";

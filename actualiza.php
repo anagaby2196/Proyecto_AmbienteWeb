@@ -17,22 +17,22 @@ function recoge($var, $m = "") {
 }//Fin Funcion recoge
 
   $idCitaPaciente = recoge("idCitaPaciente");
-  $idDoctor = recoge("idDoctor");
   $nombrePaciente = recoge("nombre");
   $cedula = recoge("cedula");
   $celular = recoge("celular");
   $correo = recoge("correo");
   $fechaNacimiento = recoge("fechaNacimiento");
+  $idDoctor = recoge("idDoctor");
   $fechaCita = recoge("fechaCita");
   $padecimiento = recoge("padecimiento");
 
   $idCitaPacienteOk  = false;
-  $idDoctorOk = false;
   $nombrePacienteOk = false;
   $cedulaOk = false;
   $celularOk = false;
   $correoOk = false;
   $fechaNacimientoOk = false;
+  $idDoctorOk = false;
   $fechaCitaOk = false;
   $padecimientoOk =false;
 
