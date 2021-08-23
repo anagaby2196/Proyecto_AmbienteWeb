@@ -112,6 +112,7 @@ function LlenaCitaJson(TextoJSON) {
     $('#idDoctor').val(ObjetoJSON.idDoctor);
     $('#nombre').val(ObjetoJSON.nombre);
     $('#cedula').val(ObjetoJSON.cedula);
+    $('#celular').val(ObjetoJSON.celular);
     $('#correo').val(ObjetoJSON.correo);
     $('#fechaNacimiento').val(ObjetoJSON.fechaNacimiento);
     $('#fechaCita').val(ObjetoJSON.fechaCita);
