@@ -129,8 +129,9 @@ function EliminaDatos($pidCitaPaciente)
 } //Fin Funcion EliminaDatos
 
 function actualizaDatos(
-  $pidDoctor,
+  
   $pidCitaPaciente,
+  $pidDoctor,
   $pnombrePaciente,
   $pcedula,
   $pcelular,
@@ -140,7 +141,7 @@ function actualizaDatos(
   $ppadecimiento,
   
 ) {
-  $response = "";
+
   $conn = Conecta();
   mysqli_set_charset($conn, "utf8");
 
@@ -157,9 +158,16 @@ function actualizaDatos(
   $ifechaCita = $pfechaCita;
   $ipadecimiento = $ppadecimiento;
  
-  $stmt->execute();
+  if($stmt->execute()){
 
-  $response = "Se actualizó la cita satisfactoriamente";
+    $response = array("mensaje" => "Se almaceno la tutoría satisfactoriamente");
+   
+    }else{
+   
+    $response = array("mensaje" => "No se almaceno la tutoría satisfactoriamente");
+   
+    }
+
 
   $stmt->close();
   disconnectDB($conn);
