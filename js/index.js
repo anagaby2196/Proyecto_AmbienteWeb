@@ -84,7 +84,7 @@ function InsercionCitaFallida(TextoJSON) {
 }//Fin Funcion InsercionCitaFallida
 
 function LimpiaCampos() {
-        $("#idDoctor").val("3"),
+        $("#idDoctor").val("1"),
         $("#nombre").val(''),
         $("#cedula").val(''),
         $("#celular").val(''),
