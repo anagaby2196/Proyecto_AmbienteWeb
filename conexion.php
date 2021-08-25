@@ -99,10 +99,10 @@ function InsertaDatos(
 
   if ($stmt->execute()) {
 
-    $response = array("mensaje" => "Se almaceno la tutoría satisfactoriamente");
+    $response = array("mensaje" => "La cita se almacenó correctamente.");
   } else {
 
-    $response = array("mensaje" => "No se almaceno la tutoría satisfactoriamente");
+    $response = array("mensaje" => "Error para almacenar la cita.");
   }
   $stmt->close();
   disconnectDB($conn);
@@ -111,16 +111,21 @@ function InsertaDatos(
 
 function EliminaDatos($pidCitaPaciente)
 {
-  $response = "";
+
   $conn = Conecta();
   $stmt = $conn->prepare("Call spEliminaCita(?)");
-  $stmt->bind_param("i", $pidCitaPaciente);
+  $stmt->bind_param("i", $idCitaPaciente);
 
   $idCitaPaciente = $pidCitaPaciente;
 
-  $stmt->execute();
+  if ($stmt->execute()) {
 
-  $response = "Se elimino la cita satisfactoriamente";
+    $response = array("mensaje" => "La cita se eliminó correctamente.");
+  } else {
+
+    $response = array("mensaje" => "Error para eliminar la cita.");
+  }
+
 
   $stmt->close();
   disconnectDB($conn);
@@ -129,25 +134,24 @@ function EliminaDatos($pidCitaPaciente)
 } //Fin Funcion EliminaDatos
 
 function actualizaDatos(
-  
+
   $pidCitaPaciente,
-  $pidDoctor,
   $pnombrePaciente,
   $pcedula,
   $pcelular,
   $pcorreo,
   $pfechaNacimiento,
+  $pidDoctor,
   $pfechaCita,
   $ppadecimiento,
-  
 ) {
 
   $conn = Conecta();
   mysqli_set_charset($conn, "utf8");
 
   $stmt = $conn->prepare("Call spActualizaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("siisissss" ,  $ipadecimiento, $iidCitaPaciente, $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita,);
- 
+  $stmt->bind_param("siisissss",  $ipadecimiento, $iidCitaPaciente, $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita,);
+
   $iidCitaPaciente = $pidCitaPaciente;
   $iidDoctor = $pidDoctor;
   $inombrePaciente = $pnombrePaciente;
@@ -157,16 +161,14 @@ function actualizaDatos(
   $ifechaNacimiento = $pfechaNacimiento;
   $ifechaCita = $pfechaCita;
   $ipadecimiento = $ppadecimiento;
- 
-  if($stmt->execute()){
 
-    $response = array("mensaje" => "Se almaceno la tutoría satisfactoriamente");
-   
-    }else{
-   
-    $response = array("mensaje" => "No se almaceno la tutoría satisfactoriamente");
-   
-    }
+  if ($stmt->execute()) {
+
+    $response = array("mensaje" => "La cita se actualizó correctamente.");
+  } else {
+
+    $response = array("mensaje" => "Error para actualizar la cita.");
+  }
 
 
   $stmt->close();

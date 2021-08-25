@@ -37,7 +37,7 @@ function recoge($var, $m = "") {
   $padecimientoOk =false;
 
   if ($idCitaPaciente == "") {
-    print "  <p class=\"aviso\">No ha envíado la cita a eliminar.</p>\n";
+    print "  <p class=\"aviso\">No ha enviado la cita a eliminar.</p>\n";
     print "\n";
   } elseif (!is_numeric($idCitaPaciente)) {
     print "  <p class=\"aviso\">El dato de la cita no es válido.</p>\n";
@@ -47,10 +47,10 @@ function recoge($var, $m = "") {
   }//Fin idCitaPaciente
 
   if ($idDoctor == "") {
-    print "  <p class=\"aviso\">No ha seleccionado al Doctor.</p>\n";
+    print "  <p class=\"aviso\">No ha seleccionado al doctor.</p>\n";
     print "\n";
   } elseif (!is_numeric($idDoctor)) {
-    print "  <p class=\"aviso\">El dato del Doctor no es válido.</p>\n";
+    print "  <p class=\"aviso\">El dato del doctor no es válido.</p>\n";
     print "\n";
   } else {
     $idDoctorOk = true;
@@ -110,8 +110,6 @@ function recoge($var, $m = "") {
 
       include 'conexion.php';
      
-      echo json_encode(actualizaDatos($idCitaPaciente, $idDoctor, $nombrePaciente, $cedula, $celular, $correo, $fechaNacimiento,
+      echo json_encode(actualizaDatos($idCitaPaciente, $nombrePaciente, $cedula, $celular, $correo, $fechaNacimiento,$idDoctor,
                                     $fechaCita, $padecimiento));
   }//Fin actualizaDatos
-
-  ?>

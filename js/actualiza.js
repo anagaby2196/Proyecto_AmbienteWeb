@@ -6,6 +6,7 @@ $(document).ready(function () {
    $("#btEnviar").click(function() {
        actualizaCitaPaciente($("#pidCitaPaciente").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(), $("#correo").val(), $("#fechaNacimiento").val(),
                              $("#idDoctor").val(), $("#fechaCita").val(), $("#padecimiento").val());
+                             
    });
 
     $("#btRestablecer").click(function () {
