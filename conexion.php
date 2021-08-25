@@ -114,7 +114,7 @@ function EliminaDatos($pidCitaPaciente)
 
   $conn = Conecta();
   $stmt = $conn->prepare("Call spEliminaCita(?)");
-  $stmt->bind_param("i", $idCitaPaciente);
+  $stmt->bind_param("i", $pidCitaPaciente);
 
   $idCitaPaciente = $pidCitaPaciente;
 
@@ -150,24 +150,24 @@ function actualizaDatos(
   mysqli_set_charset($conn, "utf8");
 
   $stmt = $conn->prepare("Call spActualizaCitaPaciente(?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param("siisissss",  $ipadecimiento, $iidCitaPaciente, $iidDoctor, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $ifechaCita,);
+  $stmt->bind_param("isisssiss",  $iidCitaPaciente, $inombrePaciente, $icedula, $icelular, $icorreo, $ifechaNacimiento, $iidDoctor, $ifechaCita, $ipadecimiento);
 
   $iidCitaPaciente = $pidCitaPaciente;
-  $iidDoctor = $pidDoctor;
   $inombrePaciente = $pnombrePaciente;
   $icedula = $pcedula;
   $icelular = $pcelular;
   $icorreo = $pcorreo;
   $ifechaNacimiento = $pfechaNacimiento;
+  $iidDoctor = $pidDoctor;
   $ifechaCita = $pfechaCita;
   $ipadecimiento = $ppadecimiento;
 
-  if ($stmt->execute()) {
-
+  if ($stmt->execute() && $stmt->affected_rows > 0) {
     $response = array("mensaje" => "La cita se actualizó correctamente.");
   } else {
-
+    // throw new Exception($stmt->errno);
     $response = array("mensaje" => "Error para actualizar la cita.");
+    
   }
 
 

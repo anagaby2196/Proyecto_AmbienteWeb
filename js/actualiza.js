@@ -44,6 +44,7 @@ function cargaCita() {
 
 function actualizaCitaPaciente(pidCitaPaciente, pnombrePaciente, pcedula, pcelular, pcorreo, pfechaNacimiento, pidDoctor, pfechaCita, ppadecimiento) {
 
+
     try {
         $.ajax(
             {
@@ -85,10 +86,10 @@ function LlenaDoctoresJson(TextoJSON) {
     }
 }//Fin Funcion LlenaDoctoresJSON
 
-function ActualizacionCitaExitosa(TextoJSON) {
+function ActualizacionCitaExitosa(ObjetoJSON) {
 
     $("#pnlInfo").dialog();
-    $("#blInfo").html('<p>' + TextoJSON + '</p>');
+    $("#blInfo").html('<p>' + ObjetoJSON.mensaje + '</p>');
     LimpiaCampos();
     window.location.replace("citas.html");
 }//Fin Funcion ActualizacionInsercionCitaExitosa
