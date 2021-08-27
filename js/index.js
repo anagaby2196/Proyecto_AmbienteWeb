@@ -84,12 +84,12 @@ function InsercionCitaFallida(TextoJSON) {
 }//Fin Funcion InsercionCitaFallida
 
 function LimpiaCampos() {
-        $("#idDoctor").val(''),
-        $("#nombre").val(''),
-        $("#cedula").val(''),
-        $("#celular").val(''),
-        $("#correo").val(''),
-        $("#fechaNacimiento").val(''),
-        $("#fechaCita").val(''),
+        $("#idDoctor").val("1");
+        $("#nombre").val('');
+        $("#cedula").val('');
+        $("#celular").val('');
+        $("#correo").val('');
+        $("#fechaNacimiento").val('');
+        $("#fechaCita").val('');
         $("#padecimiento").val('');
 }// Fin Funcion LimpiaCampos
