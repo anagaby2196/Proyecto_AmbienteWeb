@@ -101,7 +101,7 @@ function LimpiaCampos () {
     $("#celular").val('');
     $("#correo").val('');
     $("#fechaNacimiento").val('');
-    $("#idDoctor").val('');
+    $("#idDoctor").val('1');
     $("#fechaCita").val('');
     $("#padecimiento").val('');
 }//Fin Funcion LimpiaCampos
