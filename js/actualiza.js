@@ -2,7 +2,7 @@ $(document).ready(function() {
     cargaDoctores();
     cargaCita();
 
-    $("$btEnviar").click(function() {
+    $("#btEnviar").click(function() {
         actualizaCitaPaciente($("#pidCitaPaciente").val(), $("#nombre").val(), $("#cedula").val(), $("#celular").val(), $("#correo").val(),
         $("#fechaNacimiento").val(), $("#idDoctor").val(), $("fechaCita").val(), $("#padecimiento").val());
     });
@@ -85,15 +85,15 @@ function ActualizacionCitaExitosa (ObjetoJSON) {
     window.location.replace("citas.html");
 }//Fin Funcion ActualizacionInsercionCitaExitosa
 
-// function ActualizacionCitaFallida(TextoJSON) {
-//     $("#pnlMensaje").dialog();
-//     $("#pnlMensaje").html('<p>Ocurrió un error en el servidor ..</p>' + TextoJSON.responseText);
-// }
-
-function ActualizacionCitaFallida (ObjetoJSON) {
+function ActualizacionCitaFallida(TextoJSON) {
     $("#pnlMensaje").dialog();
-    $("#pnlMensaje").html('<p>Ocurrió un error en el servidor ..</p>' + ObjetoJSON.mensaje)
+    $("#pnlMensaje").html('<p>Ocurrió un error en el servidor ..</p>' + TextoJSON.responseText);
 }//Fin Funcion ActualizacionCitaFallida
+
+// function ActualizacionCitaFallida (ObjetoJSON) {
+//     $("#pnlMensaje").dialog();
+//     $("#pnlMensaje").html('<p>Ocurrió un error en el servidor ..</p>' + ObjetoJSON.mensaje)
+// }
 
 function LimpiaCampos () {
     $("#nombre").val('');
